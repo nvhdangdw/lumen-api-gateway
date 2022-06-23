@@ -1,54 +1,60 @@
 version: "3.8"
 services:
+  # PHP service
+  app:
+    build: ./docker
+    container_name: php-app
+    working_dir: /var/www/
+    volumes:
+      - ./src:/var/www
+    networks:
+      - app-network
 
-    # PHP service
-    app:
-        build: ./docker
-        container_name: php-app
-        working_dir: /var/www/
-        volumes:
-            - ./src:/var/www
-        networks:
-            - app-network
+  # MySQL database service
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    ports:
+      - "3307:3306"
+    command: mysqld --user=root
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    env_file:
+      - ./.env
+    networks:
+      - app-network
 
-    # MySQL database service
-    db:
-        image: mysql:5.7
-        container_name: mysql-db
-        ports:
-            - "3307:3306"
-        environment:
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_USER: ${DB_USERNAME}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-        env_file:
-            - ./.env
-        networks:
-            - app-network
+  # Nginx service
+  nginx:
+    image: nginx:alpine
+    container_name: php-nginx
+    ports:
+      - 8000:80
+      - 8001:81
+      - 8002:82
+    volumes:
+      - ./src:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
 
-    # Nginx service
-    nginx:
-        image: nginx:alpine
-        container_name: php-nginx
-        ports:
-            - 8000:80
-        volumes:
-            - ./src:/var/www
-            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
-        networks:
-            - app-network
-
-    # GUI Manage MySQL
-    adminer:
-      image: adminer:latest
-      container_name: adminer
-      environment:
-        ADMINER_DEFAULT_SERVER: db
-      restart: always
-      ports:
-        - 8080:8080
+  # GUI Manage MySQL
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
 
 networks:
-    app-network:
-        driver: bridge
+  app-network:
+    driver: bridge
