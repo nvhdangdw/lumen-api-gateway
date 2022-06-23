@@ -16,7 +16,12 @@ declare(strict_types = 1);
 
 $router->post('/register','UserController@register');
 
-$router->group(['prefix' => 'api', 'middleware' => ['auth']], function () use ($router) {
+$router->group(['prefix' => 'api', 'middleware' => 'client.credentials'], function () use ($router) {
+    $router->get('/test', function() {
+        return [
+            'test' => 'test'
+        ];
+    });
 
     $router->group(['prefix' => 'product'], function () use ($router) {
         $router->get('/', ['uses' => 'ProductController@index']);
