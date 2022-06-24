@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 /*
 |--------------------------------------------------------------------------
@@ -14,29 +14,25 @@ declare(strict_types = 1);
 |
 */
 
-$router->post('/register','UserController@register');
+$router->post('/register', 'UserController@register');
 
 $router->group(['prefix' => 'api', 'middleware' => 'client.credentials'], function () use ($router) {
-    $router->get('/test', function() {
-        return [
-            'test' => 'test'
-        ];
-    });
-
-    $router->group(['prefix' => 'product'], function () use ($router) {
+    $router->group(['prefix' => 'product', 'middleware' => 'scope:product'], function () use ($router) {
         $router->get('/', ['uses' => 'ProductController@index']);
+        // $router->get('/', function() {
+        //     return ['ok'];
+        // });
         $router->post('/', ['uses' => 'ProductController@store']);
         $router->get('/{product}', ['uses' => 'ProductController@show']);
         $router->patch('/{product}', ['uses' => 'ProductController@update']);
         $router->delete('/{product}', ['uses' => 'ProductController@destroy']);
     });
 
-    $router->group(['prefix' => 'order'], function () use ($router) {
+    $router->group(['prefix' => 'order', 'middleware' => 'scope:order'], function () use ($router) {
         $router->get('/', ['uses' => 'OrderController@index']);
         $router->post('/', ['uses' => 'OrderController@store']);
         $router->get('/{order}', ['uses' => 'OrderController@show']);
         $router->patch('/{order}', ['uses' => 'OrderController@update']);
         $router->delete('/{order}', ['uses' => 'OrderController@destroy']);
     });
-
 });

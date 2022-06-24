@@ -1,8 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
-require_once __DIR__.'/../vendor/autoload.php';
+use Laravel\Passport\Passport;
+
+require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
     (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -27,13 +29,13 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
- $app->withFacades();
+$app->withFacades();
 
- $app->withEloquent();
+$app->withEloquent();
 
 
- $app->configure('services');
- $app->configure('auth');
+$app->configure('services');
+$app->configure('auth');
 
 // More: Tinker
 $app->configure('tinker');
@@ -74,10 +76,12 @@ $app->singleton(
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
- $app->routeMiddleware([
-     'auth' => App\Http\Middleware\Authenticate::class,
-     'client.credentials' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
- ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+    'client.credentials' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+    'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
+    'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+]);
 
 
 
@@ -93,7 +97,7 @@ $app->singleton(
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
- $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 
@@ -106,8 +110,14 @@ $app->register(\Laravel\Tinker\TinkerServiceProvider::class);
 
 
 // Route: Passport
-Dusterio\LumenPassport\LumenPassport::routes($app->router, ['prefix' => 'api/v1/oauth'] );
+Dusterio\LumenPassport\LumenPassport::routes($app->router, ['prefix' => 'api/v1/oauth']);
 
+// Scopes: Passport
+Laravel\Passport\Passport::tokensCan([
+    'basic' => 'Basic scope',
+    'order' => 'Order scope',
+    'product' => 'Product scope'
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -123,7 +133,7 @@ Dusterio\LumenPassport\LumenPassport::routes($app->router, ['prefix' => 'api/v1/
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__ . '/../routes/web.php';
 });
 
 return $app;
