@@ -8,8 +8,8 @@ fi
 if [ ! -f ".env" ]; then
     cp .env.example .env
     # Artisan
-    php artisan passport:install
     php artisan migrate:fresh --seed
+    php artisan passport:install
 fi
 
 # Order service
