@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "e3575c97-88c3-4ac8-b94e-8168b18e1708",
+		"name": "Lumen API Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "16961540"
+	},
+	"item": [
+		{
+			"name": "ProductsApi",
+			"item": [
+				{
+					"name": "http://127.0.0.1:8002/api/product/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "hi",
+								"type": "text"
+							}
+						],
+						"url": "http://127.0.0.1:8100/api/product/"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8002/api/product/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"new product\",\r\n    \"price\": \"99.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8002/api/product/"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8002/api/product/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8002/api/product/1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8002/api/product/1",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"duy 2\",\r\n    \"price\": \"99.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8002/api/product/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrdersService",
+			"item": [
+				{
+					"name": "http://127.0.0.1:8001/api/order/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "hi",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://127.0.0.1:8001/api/order/"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8001/api/order/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 1,\r\n    \"total_price\": \"10.00\",\r\n    \"discount\": \"2.00\",\r\n    \"product_id\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8001/api/order/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "http://127.0.0.1:8000/api/order/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjkyZWEzMWNmMzZhNGYxM2NhZWQ4YjkxOWNiNzdlYWNmMThjOGFmYjU3N2JkODllODRhY2NlMDgyN2U0MTBmZGQ4ODg0MmJkMzA4OWQ0ZTJiIn0.eyJhdWQiOiIyIiwianRpIjoiOTJlYTMxY2YzNmE0ZjEzY2FlZDhiOTE5Y2I3N2VhY2YxOGM4YWZiNTc3YmQ4OWU4NGFjY2UwODI3ZTQxMGZkZDg4ODQyYmQzMDg5ZDRlMmIiLCJpYXQiOjE2NTU4ODYxODAsIm5iZiI6MTY1NTg4NjE4MCwiZXhwIjoxNjg3NDIyMTgwLCJzdWIiOiIzIiwic2NvcGVzIjpbIioiXX0.w--eCPIDoYE43n1_G2Vjc3O-wG1kSQUfPVUEu185SNkpzjrjaLdNYz11SktfEeP1VJsqnDw1wzsp7PClaIf46ywT0JypmqBOjonxi_CZj4Rsis38CNzIbson1BCq3uR6BgHjxvELdN3pqtZ6q_3hw3E0t0QKMsAxxtkzvls25J8rw9ZJBFo-PI5VOgotfnql_K4IBly6B3D0tyu_idtBoYexC_XpnSeCdKFmj_2iDLAz5nSqG6bSCmb2BwYBPxv8QvJDElG76-YrrDdecjReqQCKqdl55nO_PdVbx1CyLTPTvJps1KPgKdKfR0w74UiuQ7v1V1x9KbE4EYG4uof2oN90cNR_sEuYN_b24dUZlLRGLFw_NtQFtnRQi7Ef_g4lObu1FL22I2hz_AXSfHH5PYu_P9uRc_ur-iSBzN_kyqxE466jNtkZ7IdTPmwr2HsyIJlwh8Bo2VAAV2N8-qibTTPcm0eZ3Hq1dNgww-3MTJoZsGqAIvNNy4pKnM7lm5oJZORACVxq0vLKawZj43GJBbQChgYH0pRH_NCYSItmqkgpjFbGoSWJsOedi098wf40vjoK1I41DtP_LbMzRvqRJH7c6DWrswtu--LDBsl7Q3mB4CN7bSLbh92g1SxTRnjdkw_uLzaoZ-qWEfJAazjKILwL9d7O1T-MwMbTB7lyftA"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://127.0.0.1:8000/api/order/"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/product/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/product/"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/v1/oauth/token - get token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"grant_type\": \"password\",\r\n    \"client_id\": 2,\r\n    \"client_secret\": \"JqA4Vte5VVy1HhAXLRGH4DhP78k3MfhB3oa522zO\",\r\n    \"password\": \"123456\",\r\n    \"username\": \"user1@gmail.com\",\r\n    \"scope\": \"product\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/v1/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/v1/oauth/token - refresh_token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"grant_type\": \"refresh_token\",\r\n    \"client_id\": 2,\r\n    \"client_secret\": \"JqA4Vte5VVy1HhAXLRGH4DhP78k3MfhB3oa522zO\",\r\n    \"refresh_token\": \"def5020052c40f2b962bd4166e0bee4a58c9a79f33116d365fa19d0231129e924aab106e1ed7e939da0d183b043e3567d9a6ef4f16eea91ec7922a916cf90fbd4be8ec75d24f778c0f5c41caa4855fd78937f39e770da2b12545fc3f78bd004e1f71b98bc24751784ef005051117515ff3ece9ff7caae5e8a5739092e952c6a4310df91410973272ae7a09bcc6127303ee47196b84dddc9b176b813e086d7ffb60aa450e5e64c3b97521ea26e997beeb9161912cc410fbef95557f7a6fa23b581dd6c49cab6b5abaa8cef1f9a4e1dcae030ff8faea0016f8c294f1c825c94695e72442830c3b6437accca662b8d02cdd5c65d4481e424f2f39bc1a09d488169de879227fc6d04e49c48a95e161529dca45a3cac2a703c4f728e0754a3b6757511456012a3a6d98b48d670d1fa21fad5aca113f607cf047283f15330dd7bbd648fbd6c7cc5e3822dbc4b2fc02d8377ec18f1b842f49f016fd4f43701b2a1c367f4d52694c\",\r\n    \"scope\": \"*\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/v1/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/v1/oauth/scopes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"grant_type\": \"refresh_token\",\r\n    \"client_id\": 2,\r\n    \"client_secret\": \"JqA4Vte5VVy1HhAXLRGH4DhP78k3MfhB3oa522zO\",\r\n    \"refresh_token\": \"def5020052c40f2b962bd4166e0bee4a58c9a79f33116d365fa19d0231129e924aab106e1ed7e939da0d183b043e3567d9a6ef4f16eea91ec7922a916cf90fbd4be8ec75d24f778c0f5c41caa4855fd78937f39e770da2b12545fc3f78bd004e1f71b98bc24751784ef005051117515ff3ece9ff7caae5e8a5739092e952c6a4310df91410973272ae7a09bcc6127303ee47196b84dddc9b176b813e086d7ffb60aa450e5e64c3b97521ea26e997beeb9161912cc410fbef95557f7a6fa23b581dd6c49cab6b5abaa8cef1f9a4e1dcae030ff8faea0016f8c294f1c825c94695e72442830c3b6437accca662b8d02cdd5c65d4481e424f2f39bc1a09d488169de879227fc6d04e49c48a95e161529dca45a3cac2a703c4f728e0754a3b6757511456012a3a6d98b48d670d1fa21fad5aca113f607cf047283f15330dd7bbd648fbd6c7cc5e3822dbc4b2fc02d8377ec18f1b842f49f016fd4f43701b2a1c367f4d52694c\",\r\n    \"scope\": \"*\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/v1/oauth/token"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
