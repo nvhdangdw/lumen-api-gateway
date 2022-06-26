@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 use App\Services\OrderService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use LDAP\Result;
 
 class OrderController extends Controller
 {
@@ -37,7 +39,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return $this->successResponse($this->orderService->fetchOrders());
+        if ($res = Redis::get('order:index')) {
+            return $res;
+        }
+
+        $response = $this->successResponse($this->orderService->fetchOrders());
+        Redis::set('order:index', $response->getContent());
+        return $response;
     }
 
     /**

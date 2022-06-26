@@ -39,6 +39,8 @@ $app->configure('auth');
 
 // More: Tinker
 $app->configure('tinker');
+// More: Database
+$app->configure('database');
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +109,8 @@ $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 
 // More: Tinker
 $app->register(\Laravel\Tinker\TinkerServiceProvider::class);
+// More:Redis
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 
 // Route: Passport

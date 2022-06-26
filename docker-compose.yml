@@ -34,12 +34,18 @@ services:
     image: nginx:alpine
     container_name: lumen-nginx
     ports:
-      - 8000:80
+      - 8888:80
       - 8001:81
       - 8002:82
     volumes:
       - ./src:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
     networks:
       - app-network
 
@@ -54,6 +60,31 @@ services:
       - 8080:8080
     networks:
       - app-network
+
+  # GUI Manage Docker
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    networks:
+      - app-network
+
+  # Test Mail
+  mailhog:
+    image: mailhog/mailhog
+    logging:
+      driver: 'none'  # disable saving logs
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
+    networks:
+      - app-network
+
 
 networks:
   app-network:
