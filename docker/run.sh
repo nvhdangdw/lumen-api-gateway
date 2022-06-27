@@ -2,41 +2,57 @@
 
 # API Gateway
 cd /var/www/ApiGateway
-# Fix permission
-chmod 775 -R stogare/*
+# Permission
+if [ "$(stat -c "%U" storage/logs/)" != "www-data" ] || [ "$(stat -c "%G" storage/logs/)" != "www-data" ]; then
+    chown -R www-data:www-data storage/logs/
+fi
+
 if [ ! -d "vendor" ]; then
     composer install
 fi
-if [ ! -f ".env" ]; then
-    cp .env.example .env
-    # Artisan
+
+if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
     php artisan migrate:fresh --seed
     php artisan passport:install
 fi
 
 # Order service
-# Fix permission
 cd /var/www/OrdersService
-chmod 775 -R stogare/*
+# Permission
+if [ "$(stat -c "%U" storage/logs/)" != "www-data" ] || [ "$(stat -c "%G" storage/logs/)" != "www-data" ]; then
+    chown -R www-data:www-data storage/logs/
+fi
+
 if [ ! -d "vendor" ]; then
     composer install
 fi
+
 if [ ! -f ".env" ]; then
     cp .env.example .env
-    # Artisan
+fi
+
+if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
     php artisan migrate:fresh --seed
 fi
 
+
 # Product service
-# Fix permission
-chmod 775 -R stogare/*
 cd /var/www/ProductsApi
+
+# Permission
+if [ "$(stat -c "%U" storage/logs/)" != "www-data" ] || [ "$(stat -c "%G" storage/logs/)" != "www-data" ]; then
+    chown -R www-data:www-data storage/logs/
+fi
+
 if [ ! -d "vendor" ]; then
     composer install
 fi
+
 if [ ! -f ".env" ]; then
     cp .env.example .env
-    # Artisan
+fi
+
+if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
     php artisan migrate:fresh --seed
 fi
 
