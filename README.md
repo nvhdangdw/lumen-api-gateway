@@ -9,7 +9,7 @@ https://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@github.com/khanhtonptn/MBA__doc
 # Docker
 ## Run
 ```
-docker compose up --build
+docker compose up
 ```
 ## Rebuild and run
 ```
