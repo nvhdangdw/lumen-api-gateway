@@ -6,8 +6,17 @@ Https
 ```
 https://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@github.com/khanhtonptn/MBA__docker-lumen__API-Gateway.git
 ```
-# Run
-## Build
+# Docker
+## Run
 ```
-docker compose up
+docker compose up --build
+```
+## Rebuild and run
+```
+docker compose up --build
+```
+## Fix permission in `**/storage/*`
+```
+docker compose exec app bash
+chmod 775 -R {ApiGateway,OrdersService,ProductsApi}/storage/logs
 ```
