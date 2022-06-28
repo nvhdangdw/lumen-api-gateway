@@ -1,60 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 
 # API Gateway
-cd /var/www/ApiGateway
-# Permission
-if [ "$(stat -c "%U" storage/logs/)" != "www-data" ] || [ "$(stat -c "%G" storage/logs/)" != "www-data" ]; then
-    chown -R www-data:www-data storage/logs/
-fi
 
-if [ ! -d "vendor" ]; then
-    composer install
-fi
+declare -a arr=("ApiGateway" "OrdersService" "ProductsApi")
 
-if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
-    php artisan migrate:fresh --seed
-    php artisan passport:install
-fi
+for i in "${arr[@]}"
+do
+   cd /var/www/$i
+   # Permission
+    if [ "$(stat -c "%U" storage/logs/)" != "www-data" ] || [ "$(stat -c "%G" storage/logs/)" != "www-data" ]; then
+        rm -rf sstorage/logs/*
+        chown -R www-data:www-data storage/logs/
+    fi
 
-# Order service
-cd /var/www/OrdersService
-# Permission
-if [ "$(stat -c "%U" storage/logs/)" != "www-data" ] || [ "$(stat -c "%G" storage/logs/)" != "www-data" ]; then
-    chown -R www-data:www-data storage/logs/
-fi
+    if [ ! -d "vendor" ]; then
+        composer install
+    fi
 
-if [ ! -d "vendor" ]; then
-    composer install
-fi
+    if [ ! -f ".env" ]; then
+        cp .env.example .env
+    fi
 
-if [ ! -f ".env" ]; then
-    cp .env.example .env
-fi
-
-if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
-    php artisan migrate:fresh --seed
-fi
-
-
-# Product service
-cd /var/www/ProductsApi
-
-# Permission
-if [ "$(stat -c "%U" storage/logs/)" != "www-data" ] || [ "$(stat -c "%G" storage/logs/)" != "www-data" ]; then
-    chown -R www-data:www-data storage/logs/
-fi
-
-if [ ! -d "vendor" ]; then
-    composer install
-fi
-
-if [ ! -f ".env" ]; then
-    cp .env.example .env
-fi
-
-if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
-    php artisan migrate:fresh --seed
-fi
+    if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
+        php artisan passport:install
+    fi
+done
 
 # Run
 php-fpm
