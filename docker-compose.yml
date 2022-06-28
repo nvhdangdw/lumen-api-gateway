@@ -1,43 +1,11 @@
 version: "3.8"
 services:
-  # PHP service
-  app:
-    build: ./docker
-    container_name: lumen-app
-    working_dir: /var/www/
-    volumes:
-      - ./src:/var/www
-      - ./docker/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
-      - ./docker/php-fpm/php/php.ini:/usr/local/etc/php/php.ini
-      - ./docker/php-fpm/php-fpm.d/www.conf:/usr/local/etc/php-fpm/www.conf
-      - ./logs/php-fpm/php-fpm.log:/var/log/php-fpm.log
-    networks:
-      - mba-lumen-AG
-
-  # MySQL database service
-  db:
-    image: mysql:5.7
-    container_name: lumen-db
-    ports:
-      - "3307:3306"
-    command: mysqld --user=root
-    volumes:
-      - ./docker/mysql:/docker-entrypoint-initdb.d
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-    env_file:
-      - ./.env
-    networks:
-      - mba-lumen-AG
-
   # Nginx service
   nginx:
     image: nginx:alpine
-    container_name: lumen-nginx
+    container_name: mba-nginx
     ports:
+      - 5000:5000
       - 8888:80
       - 8001:81
       - 8002:82
@@ -46,6 +14,53 @@ services:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
       - ./logs/nginx/access_log.log:/var/log/nginx/access_log.log
       - ./logs/nginx/error.log:/var/log/nginx/error.log
+    networks:
+      - mba-lumen-AG
+
+
+  # PHP service
+  api-gateway:
+    build: ./docker/api-gateway
+    container_name: mba-api-gateway
+    working_dir: /var/www/
+    volumes:
+      - ./src:/var/www
+      - ./docker/api-gateway/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./docker/api-gateway/php-fpm/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/api-gateway/php-fpm/php-fpm.d/www.conf:/usr/local/etc/php-fpm/www.conf
+      - ./logs/api-gateway/php-fpm/php-fpm.log:/var/log/php-fpm.log
+    networks:
+      - mba-lumen-AG
+
+  opencart:
+    build: ./docker/opencart
+    container_name: mba-opencart
+    working_dir: /var/www/
+    volumes:
+      - ./src:/var/www
+      - ./docker/opencart/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./docker/opencart/php-fpm/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/opencart/php-fpm/php-fpm.d/www.conf:/usr/local/etc/php-fpm/www.conf
+      - ./logs/opencart/php-fpm/php-fpm.log:/var/log/php-fpm.log
+    networks:
+      - mba-lumen-AG
+
+  # MySQL database service
+  db:
+    image: mysql:5.7
+    container_name: mba-db
+    ports:
+      - "3307:3306"
+    command: mysqld --user=root
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    env_file:
+      - ./.env
     networks:
       - mba-lumen-AG
 
@@ -60,10 +75,9 @@ services:
   # GUI Manage MySQL
   adminer:
     image: adminer:latest
-    container_name: lumen-adminer
+    container_name: mba-adminer
     environment:
       ADMINER_DEFAULT_SERVER: db
-    restart: always
     ports:
       - 8080:8080
     networks:
@@ -74,7 +88,6 @@ services:
     container_name: redis-commander
     hostname: redis-commander
     image: rediscommander/redis-commander:latest
-    restart: always
     environment:
       - REDIS_HOSTS=local:redis:6379
     ports:
