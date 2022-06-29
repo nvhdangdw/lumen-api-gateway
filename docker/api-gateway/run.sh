@@ -22,7 +22,7 @@ do
     fi
 
     if [ "$(php artisan migrate:status)" = "Migration table not found." ]; then
-        php artisan passport:install
+        php artisan migrate:refresh --seed
     fi
 done
 

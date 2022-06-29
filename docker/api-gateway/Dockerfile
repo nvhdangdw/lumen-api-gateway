@@ -5,10 +5,18 @@ RUN apt update && \
     apt-get -y install sudo
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y git vim
+RUN apt-get update && apt-get install -y \
+    git \
+    vim \
+    libzip-dev \
+    libpng-dev \
+    libjpeg-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install \
+    pdo_mysql \
+    zip \
+    gd
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
