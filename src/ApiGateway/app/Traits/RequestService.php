@@ -27,6 +27,11 @@ trait RequestService
             $headers['Authorization'] = $this->secret;
         }
 
+        // Append other header
+        if (isset($this->headers)) {
+            $headers = array_merge($headers, $this->headers);
+        }
+
         $response = $client->request($method, $requestUrl,
             [
                 'form_params' => $formParams,

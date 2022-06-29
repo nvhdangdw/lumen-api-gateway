@@ -11,5 +11,5 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
 -- create user and grant rights
 CREATE USER 'opencart'@'localhost' IDENTIFIED BY 'opencart';
 CREATE USER 'lumen'@'localhost' IDENTIFIED BY 'lumen';
-GRANT ALL PRIVILEGES ON *.* TO 'opencart'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'opencart'@'%' IDENTIFIED BY 'opencart';
 GRANT ALL PRIVILEGES ON *.* TO 'lumen'@'%';

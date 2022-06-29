@@ -1,0 +1,80 @@
+version: '3.7'
+
+services:
+  # PHP-FPM - Service
+  app:
+    # Build image from dockerfile be created
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    # Config restart container
+    restart: unless-stopped
+    tty: true
+    # setting workspace for container
+    working_dir: /var/www
+    # if need to run php artisan in port 8000, can comment line 17
+    # command: php artisan serve
+
+    # port to access in your device (8001) access to port 8000 in container
+    ports:
+      - "8001:8000"
+
+    # mount data for save change in this session run
+    volumes:
+      - ./:/var/www
+      - ./docker-files/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    # link to database
+    links:
+      - mysql
+    # config network in cluster App-MySQL-Nginx
+    networks:
+      - sandbox
+
+  # MySQL - QR-BENEFITS
+  mysql:
+    # Build image from dockerfile be created and argument
+    build:
+      context: ./docker-files/mysql/
+      dockerfile: Dockerfile
+      # parse argument
+      args:
+        - DB_DATABASE=${DB_DATABASE}
+        - DB_PASSWORD=${DB_PASSWORD}
+    # define container name
+    container_name: mysql
+    tty: true
+    # port to access in your device (3306) access to default port 3006 in container mysql
+    ports:
+      - "3306:3306"
+    # config network in cluster App-MySQL-Nginx
+    networks:
+      - sandbox
+
+  # NGINX - Service
+  webserver:
+    # define image to docker will pulled from dockerhub
+    image: nginx:alpine
+    # define container name
+    container_name: webserver
+    # Config restart container
+    restart: unless-stopped
+    tty: true
+    # port to access in your device (8001) access to default port 80 in container nginx
+    ports:
+      - "8000:80"
+    # mount data for save change in this session run
+    volumes:
+      - ./:/var/www
+      - ./docker-files/nginx/conf.d/:/etc/nginx/conf.d/
+    # link to database
+    links:
+      - mysql
+    # config network in cluster App-MySQL-Nginx
+    networks:
+      - sandbox
+
+# Networks
+networks:
+  sandbox:
+    driver: bridge

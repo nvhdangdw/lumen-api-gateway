@@ -2,7 +2,7 @@
 
 # API Gateway
 
-declare -a arr=("ApiGateway" "OrdersService" "ProductsApi")
+declare -a arr=("ApiGateway" "OrdersService" "ProductsApi" "QRBenefitService")
 
 for i in "${arr[@]}"
 do

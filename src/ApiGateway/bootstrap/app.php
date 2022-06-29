@@ -120,6 +120,7 @@ Dusterio\LumenPassport\LumenPassport::routes($app->router, ['prefix' => 'api/v1/
 Laravel\Passport\Passport::tokensCan([
     'basic' => 'Basic scope',
     'order' => 'Order scope',
+    'qr-benefit' => 'QRBenefit scope',
     'product' => 'Product scope'
 ]);
 

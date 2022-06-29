@@ -5,10 +5,11 @@ services:
     image: nginx:alpine
     container_name: mba-nginx
     ports:
-      - 5000:5000
-      - 8888:80
-      - 8001:81
-      - 8002:82
+      - ${NGINX_LUMEN_AG_PORT}:80
+      - ${NGINX_ORDER_PORT}:81
+      - ${NGINX_PRODUCT_PORT}:82
+      - ${NGINX_QR_BENEFIT_PORT}:83
+      - ${NGINX_OPENCART_PORT}:84
     volumes:
       - ./src:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
@@ -68,7 +69,7 @@ services:
   redis:
     image: redis
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:6379"
     networks:
       - mba-lumen-AG
 
@@ -79,7 +80,7 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: db
     ports:
-      - 8080:8080
+      - ${ADMINER_PORT}:8080
     networks:
       - mba-lumen-AG
 
@@ -91,7 +92,7 @@ services:
     environment:
       - REDIS_HOSTS=local:redis:6379
     ports:
-      - "8081:8081"
+      - "${REDIS_WEB_PORT}:8081"
     networks:
       - mba-lumen-AG
 
@@ -101,8 +102,8 @@ services:
     logging:
       driver: 'none'  # disable saving logs
     ports:
-      - 1025:1025 # smtp server
-      - 8025:8025 # web ui
+      - ${MAIL_SMTP_PORT}:1025 # smtp server
+      - ${MAIL_WEB_PORT}:8025 # web ui
     networks:
       - mba-lumen-AG
 
