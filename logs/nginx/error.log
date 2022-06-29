@@ -1,0 +1,286 @@
+2022/06/29 02:53:45 [notice] 1#1: using the "epoll" event method
+2022/06/29 02:53:45 [notice] 1#1: nginx/1.23.0
+2022/06/29 02:53:45 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/06/29 02:53:45 [notice] 1#1: OS: Linux 5.15.32-0-lts
+2022/06/29 02:53:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/06/29 02:53:45 [notice] 1#1: start worker processes
+2022/06/29 02:53:45 [notice] 1#1: start worker process 31
+2022/06/29 02:53:45 [notice] 1#1: start worker process 32
+2022/06/29 02:53:45 [notice] 1#1: start worker process 33
+2022/06/29 02:53:45 [notice] 1#1: start worker process 34
+2022/06/29 02:53:45 [notice] 1#1: start worker process 35
+2022/06/29 02:53:45 [notice] 1#1: start worker process 36
+2022/06/29 02:53:45 [notice] 1#1: start worker process 37
+2022/06/29 03:08:30 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/06/29 03:08:30 [notice] 31#31: gracefully shutting down
+2022/06/29 03:08:30 [notice] 31#31: exiting
+2022/06/29 03:08:30 [notice] 31#31: exit
+2022/06/29 03:08:30 [notice] 33#33: gracefully shutting down
+2022/06/29 03:08:30 [notice] 33#33: exiting
+2022/06/29 03:08:30 [notice] 33#33: exit
+2022/06/29 03:08:30 [notice] 34#34: gracefully shutting down
+2022/06/29 03:08:30 [notice] 34#34: exiting
+2022/06/29 03:08:30 [notice] 34#34: exit
+2022/06/29 03:08:30 [notice] 32#32: gracefully shutting down
+2022/06/29 03:08:30 [notice] 32#32: exiting
+2022/06/29 03:08:30 [notice] 32#32: exit
+2022/06/29 03:08:30 [notice] 35#35: gracefully shutting down
+2022/06/29 03:08:30 [notice] 37#37: gracefully shutting down
+2022/06/29 03:08:30 [notice] 37#37: exiting
+2022/06/29 03:08:30 [notice] 35#35: exiting
+2022/06/29 03:08:30 [notice] 37#37: exit
+2022/06/29 03:08:30 [notice] 35#35: exit
+2022/06/29 03:08:30 [notice] 36#36: gracefully shutting down
+2022/06/29 03:08:30 [notice] 36#36: exiting
+2022/06/29 03:08:30 [notice] 36#36: exit
+2022/06/29 03:08:30 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/06/29 03:08:30 [notice] 1#1: worker process 31 exited with code 0
+2022/06/29 03:08:30 [notice] 1#1: worker process 32 exited with code 0
+2022/06/29 03:08:30 [notice] 1#1: worker process 33 exited with code 0
+2022/06/29 03:08:30 [notice] 1#1: worker process 34 exited with code 0
+2022/06/29 03:08:30 [notice] 1#1: worker process 35 exited with code 0
+2022/06/29 03:08:30 [notice] 1#1: worker process 37 exited with code 0
+2022/06/29 03:08:30 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:08:30 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2022/06/29 03:08:30 [notice] 1#1: worker process 36 exited with code 0
+2022/06/29 03:08:30 [notice] 1#1: exit
+2022/06/29 03:10:55 [notice] 1#1: using the "epoll" event method
+2022/06/29 03:10:55 [notice] 1#1: nginx/1.23.0
+2022/06/29 03:10:55 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/06/29 03:10:55 [notice] 1#1: OS: Linux 5.15.32-0-lts
+2022/06/29 03:10:55 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/06/29 03:10:55 [notice] 1#1: start worker processes
+2022/06/29 03:10:55 [notice] 1#1: start worker process 31
+2022/06/29 03:10:55 [notice] 1#1: start worker process 32
+2022/06/29 03:10:55 [notice] 1#1: start worker process 33
+2022/06/29 03:10:55 [notice] 1#1: start worker process 34
+2022/06/29 03:10:55 [notice] 1#1: start worker process 35
+2022/06/29 03:10:55 [notice] 1#1: start worker process 36
+2022/06/29 03:10:55 [notice] 1#1: start worker process 37
+2022/06/29 03:12:36 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/06/29 03:12:36 [notice] 32#32: gracefully shutting down
+2022/06/29 03:12:36 [notice] 32#32: exiting
+2022/06/29 03:12:36 [notice] 32#32: exit
+2022/06/29 03:12:36 [notice] 33#33: gracefully shutting down
+2022/06/29 03:12:36 [notice] 33#33: exiting
+2022/06/29 03:12:36 [notice] 33#33: exit
+2022/06/29 03:12:36 [notice] 34#34: gracefully shutting down
+2022/06/29 03:12:36 [notice] 34#34: exiting
+2022/06/29 03:12:36 [notice] 34#34: exit
+2022/06/29 03:12:36 [notice] 31#31: gracefully shutting down
+2022/06/29 03:12:36 [notice] 31#31: exiting
+2022/06/29 03:12:36 [notice] 31#31: exit
+2022/06/29 03:12:36 [notice] 37#37: gracefully shutting down
+2022/06/29 03:12:36 [notice] 37#37: exiting
+2022/06/29 03:12:36 [notice] 37#37: exit
+2022/06/29 03:12:36 [notice] 36#36: gracefully shutting down
+2022/06/29 03:12:36 [notice] 36#36: exiting
+2022/06/29 03:12:36 [notice] 36#36: exit
+2022/06/29 03:12:36 [notice] 35#35: gracefully shutting down
+2022/06/29 03:12:36 [notice] 35#35: exiting
+2022/06/29 03:12:36 [notice] 35#35: exit
+2022/06/29 03:12:36 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/06/29 03:12:36 [notice] 1#1: worker process 32 exited with code 0
+2022/06/29 03:12:36 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:12:36 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2022/06/29 03:12:36 [notice] 1#1: worker process 31 exited with code 0
+2022/06/29 03:12:36 [notice] 1#1: worker process 33 exited with code 0
+2022/06/29 03:12:36 [notice] 1#1: worker process 34 exited with code 0
+2022/06/29 03:12:36 [notice] 1#1: worker process 36 exited with code 0
+2022/06/29 03:12:36 [notice] 1#1: worker process 37 exited with code 0
+2022/06/29 03:12:36 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:12:36 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/06/29 03:12:36 [notice] 1#1: worker process 35 exited with code 0
+2022/06/29 03:12:36 [notice] 1#1: exit
+2022/06/29 03:13:14 [notice] 1#1: using the "epoll" event method
+2022/06/29 03:13:14 [notice] 1#1: nginx/1.23.0
+2022/06/29 03:13:14 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/06/29 03:13:14 [notice] 1#1: OS: Linux 5.15.32-0-lts
+2022/06/29 03:13:14 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/06/29 03:13:14 [notice] 1#1: start worker processes
+2022/06/29 03:13:14 [notice] 1#1: start worker process 32
+2022/06/29 03:13:14 [notice] 1#1: start worker process 33
+2022/06/29 03:13:14 [notice] 1#1: start worker process 34
+2022/06/29 03:13:14 [notice] 1#1: start worker process 35
+2022/06/29 03:13:14 [notice] 1#1: start worker process 36
+2022/06/29 03:13:14 [notice] 1#1: start worker process 37
+2022/06/29 03:13:14 [notice] 1#1: start worker process 38
+2022/06/29 03:30:20 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/06/29 03:30:20 [notice] 36#36: gracefully shutting down
+2022/06/29 03:30:20 [notice] 33#33: gracefully shutting down
+2022/06/29 03:30:20 [notice] 36#36: exiting
+2022/06/29 03:30:20 [notice] 33#33: exiting
+2022/06/29 03:30:20 [notice] 32#32: gracefully shutting down
+2022/06/29 03:30:20 [notice] 32#32: exiting
+2022/06/29 03:30:20 [notice] 32#32: exit
+2022/06/29 03:30:20 [notice] 33#33: exit
+2022/06/29 03:30:20 [notice] 38#38: gracefully shutting down
+2022/06/29 03:30:20 [notice] 38#38: exiting
+2022/06/29 03:30:20 [notice] 36#36: exit
+2022/06/29 03:30:20 [notice] 38#38: exit
+2022/06/29 03:30:20 [notice] 34#34: gracefully shutting down
+2022/06/29 03:30:20 [notice] 34#34: exiting
+2022/06/29 03:30:20 [notice] 34#34: exit
+2022/06/29 03:30:20 [notice] 35#35: gracefully shutting down
+2022/06/29 03:30:20 [notice] 37#37: gracefully shutting down
+2022/06/29 03:30:20 [notice] 37#37: exiting
+2022/06/29 03:30:20 [notice] 37#37: exit
+2022/06/29 03:30:20 [notice] 35#35: exiting
+2022/06/29 03:30:20 [notice] 35#35: exit
+2022/06/29 03:30:20 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2022/06/29 03:30:20 [notice] 1#1: worker process 33 exited with code 0
+2022/06/29 03:30:20 [notice] 1#1: worker process 36 exited with code 0
+2022/06/29 03:30:20 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:30:20 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2022/06/29 03:30:20 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2022/06/29 03:30:20 [notice] 1#1: worker process 32 exited with code 0
+2022/06/29 03:30:20 [notice] 1#1: worker process 34 exited with code 0
+2022/06/29 03:30:20 [notice] 1#1: worker process 38 exited with code 0
+2022/06/29 03:30:20 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:30:20 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2022/06/29 03:30:20 [notice] 1#1: worker process 37 exited with code 0
+2022/06/29 03:30:20 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:30:20 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/06/29 03:30:20 [notice] 1#1: worker process 35 exited with code 0
+2022/06/29 03:30:20 [notice] 1#1: exit
+2022/06/29 03:31:31 [notice] 1#1: using the "epoll" event method
+2022/06/29 03:31:31 [notice] 1#1: nginx/1.23.0
+2022/06/29 03:31:31 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/06/29 03:31:31 [notice] 1#1: OS: Linux 5.15.32-0-lts
+2022/06/29 03:31:31 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/06/29 03:31:31 [notice] 1#1: start worker processes
+2022/06/29 03:31:31 [notice] 1#1: start worker process 32
+2022/06/29 03:31:31 [notice] 1#1: start worker process 33
+2022/06/29 03:31:31 [notice] 1#1: start worker process 34
+2022/06/29 03:31:31 [notice] 1#1: start worker process 35
+2022/06/29 03:31:31 [notice] 1#1: start worker process 36
+2022/06/29 03:31:31 [notice] 1#1: start worker process 37
+2022/06/29 03:31:31 [notice] 1#1: start worker process 38
+2022/06/29 03:31:38 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/06/29 03:31:38 [notice] 32#32: gracefully shutting down
+2022/06/29 03:31:38 [notice] 32#32: exiting
+2022/06/29 03:31:38 [notice] 32#32: exit
+2022/06/29 03:31:38 [notice] 33#33: gracefully shutting down
+2022/06/29 03:31:38 [notice] 33#33: exiting
+2022/06/29 03:31:38 [notice] 34#34: gracefully shutting down
+2022/06/29 03:31:38 [notice] 35#35: gracefully shutting down
+2022/06/29 03:31:38 [notice] 34#34: exiting
+2022/06/29 03:31:38 [notice] 35#35: exiting
+2022/06/29 03:31:38 [notice] 34#34: exit
+2022/06/29 03:31:38 [notice] 35#35: exit
+2022/06/29 03:31:38 [notice] 33#33: exit
+2022/06/29 03:31:38 [notice] 36#36: gracefully shutting down
+2022/06/29 03:31:38 [notice] 36#36: exiting
+2022/06/29 03:31:38 [notice] 36#36: exit
+2022/06/29 03:31:38 [notice] 38#38: gracefully shutting down
+2022/06/29 03:31:38 [notice] 37#37: gracefully shutting down
+2022/06/29 03:31:38 [notice] 37#37: exiting
+2022/06/29 03:31:38 [notice] 37#37: exit
+2022/06/29 03:31:38 [notice] 38#38: exiting
+2022/06/29 03:31:38 [notice] 38#38: exit
+2022/06/29 03:31:38 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/06/29 03:31:38 [notice] 1#1: worker process 32 exited with code 0
+2022/06/29 03:31:38 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:31:38 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2022/06/29 03:31:38 [notice] 1#1: worker process 33 exited with code 0
+2022/06/29 03:31:38 [notice] 1#1: worker process 35 exited with code 0
+2022/06/29 03:31:38 [notice] 1#1: worker process 37 exited with code 0
+2022/06/29 03:31:38 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:31:38 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2022/06/29 03:31:38 [notice] 1#1: worker process 34 exited with code 0
+2022/06/29 03:31:38 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:31:38 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2022/06/29 03:31:38 [notice] 1#1: worker process 36 exited with code 0
+2022/06/29 03:31:38 [notice] 1#1: worker process 38 exited with code 0
+2022/06/29 03:31:38 [notice] 1#1: exit
+2022/06/29 03:33:19 [notice] 1#1: using the "epoll" event method
+2022/06/29 03:33:19 [notice] 1#1: nginx/1.23.0
+2022/06/29 03:33:19 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/06/29 03:33:19 [notice] 1#1: OS: Linux 5.15.32-0-lts
+2022/06/29 03:33:19 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/06/29 03:33:19 [notice] 1#1: start worker processes
+2022/06/29 03:33:19 [notice] 1#1: start worker process 32
+2022/06/29 03:33:19 [notice] 1#1: start worker process 33
+2022/06/29 03:33:19 [notice] 1#1: start worker process 34
+2022/06/29 03:33:19 [notice] 1#1: start worker process 35
+2022/06/29 03:33:19 [notice] 1#1: start worker process 36
+2022/06/29 03:33:19 [notice] 1#1: start worker process 37
+2022/06/29 03:33:19 [notice] 1#1: start worker process 38
+2022/06/29 03:47:46 [notice] 1#1: using the "epoll" event method
+2022/06/29 03:47:46 [notice] 1#1: nginx/1.23.0
+2022/06/29 03:47:46 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/06/29 03:47:46 [notice] 1#1: OS: Linux 5.15.32-0-lts
+2022/06/29 03:47:46 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/06/29 03:47:46 [notice] 1#1: start worker processes
+2022/06/29 03:47:46 [notice] 1#1: start worker process 31
+2022/06/29 03:47:46 [notice] 1#1: start worker process 32
+2022/06/29 03:47:46 [notice] 1#1: start worker process 33
+2022/06/29 03:47:46 [notice] 1#1: start worker process 34
+2022/06/29 03:47:46 [notice] 1#1: start worker process 35
+2022/06/29 03:47:46 [notice] 1#1: start worker process 36
+2022/06/29 03:47:46 [notice] 1#1: start worker process 37
+2022/06/29 03:48:49 [error] 32#32: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/ApiGateway/storage/logs/lumen-2022-06-29.log" could not be opened in append mode: failed to open stream: Permission denied in /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:115
+Stack trace:
+#0 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php(120): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\RotatingFileHandler->write(Array)
+#2 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#3 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(UnexpectedValueException), Array)
+#4 /var/www/ApiGateway/vendor/illuminate/log/Logger.php(176): Monolog\Logger->error(Object(UnexpectedValueException), Array)
+#5 /va...
+PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/ApiGateway/storage/logs/lumen-2022-06-29.log" could not be opened in append mode: failed to open stream: Permission denied in /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:115
+Stack trace:
+#0 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php(120): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\RotatingFileHandler->write(Array)
+#2 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#3 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(Symfony\Component\Debug\Exception\FatalErrorException), Array)
+#4 /var/www/ApiGateway/vendor/illuminate/l
+2022/06/29 03:55:51 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/06/29 03:55:51 [notice] 31#31: gracefully shutting down
+2022/06/29 03:55:51 [notice] 31#31: exiting
+2022/06/29 03:55:51 [notice] 31#31: exit
+2022/06/29 03:55:51 [notice] 33#33: gracefully shutting down
+2022/06/29 03:55:51 [notice] 33#33: exiting
+2022/06/29 03:55:51 [notice] 34#34: gracefully shutting down
+2022/06/29 03:55:51 [notice] 36#36: gracefully shutting down
+2022/06/29 03:55:51 [notice] 36#36: exiting
+2022/06/29 03:55:51 [notice] 36#36: exit
+2022/06/29 03:55:51 [notice] 37#37: gracefully shutting down
+2022/06/29 03:55:51 [notice] 37#37: exiting
+2022/06/29 03:55:51 [notice] 32#32: gracefully shutting down
+2022/06/29 03:55:51 [notice] 32#32: exiting
+2022/06/29 03:55:51 [notice] 32#32: exit
+2022/06/29 03:55:51 [notice] 35#35: gracefully shutting down
+2022/06/29 03:55:51 [notice] 34#34: exiting
+2022/06/29 03:55:51 [notice] 33#33: exit
+2022/06/29 03:55:51 [notice] 37#37: exit
+2022/06/29 03:55:51 [notice] 35#35: exiting
+2022/06/29 03:55:51 [notice] 34#34: exit
+2022/06/29 03:55:51 [notice] 35#35: exit
+2022/06/29 03:55:51 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2022/06/29 03:55:51 [notice] 1#1: worker process 31 exited with code 0
+2022/06/29 03:55:51 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:55:51 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2022/06/29 03:55:51 [notice] 1#1: worker process 32 exited with code 0
+2022/06/29 03:55:51 [notice] 1#1: worker process 33 exited with code 0
+2022/06/29 03:55:51 [notice] 1#1: worker process 36 exited with code 0
+2022/06/29 03:55:51 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:55:51 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2022/06/29 03:55:51 [notice] 1#1: worker process 37 exited with code 0
+2022/06/29 03:55:51 [notice] 1#1: signal 29 (SIGIO) received
+2022/06/29 03:55:51 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2022/06/29 03:55:51 [notice] 1#1: worker process 34 exited with code 0
+2022/06/29 03:55:51 [notice] 1#1: worker process 35 exited with code 0
+2022/06/29 03:55:51 [notice] 1#1: exit
+2022/06/29 03:58:45 [notice] 1#1: using the "epoll" event method
+2022/06/29 03:58:45 [notice] 1#1: nginx/1.23.0
+2022/06/29 03:58:45 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/06/29 03:58:45 [notice] 1#1: OS: Linux 5.15.32-0-lts
+2022/06/29 03:58:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/06/29 03:58:45 [notice] 1#1: start worker processes
+2022/06/29 03:58:45 [notice] 1#1: start worker process 31
+2022/06/29 03:58:45 [notice] 1#1: start worker process 32
+2022/06/29 03:58:45 [notice] 1#1: start worker process 33
+2022/06/29 03:58:45 [notice] 1#1: start worker process 34
+2022/06/29 03:58:45 [notice] 1#1: start worker process 35
+2022/06/29 03:58:45 [notice] 1#1: start worker process 36
+2022/06/29 03:58:45 [notice] 1#1: start worker process 37
