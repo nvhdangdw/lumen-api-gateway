@@ -5,24 +5,24 @@ declare(strict_types = 1);
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\QRBenefitService;
+use App\Services\QRBenefit\AuthService;
 use Illuminate\Support\Facades\Redis;
 
 class QRBenefitController extends Controller
 {
     /**
-     * @var \App\Services\QRBenefitService
+     * @var \App\Services\QRBenefit\AuthService $service
      */
-    protected $qrBenefitService;
+    protected $service;
 
     /**
      * OrderController constructor.
      *
-     * @param \App\Services\QRBenefitService $qrBenefitService
+     * @param \App\Services\QRBenefit\AuthService $service
      */
-    public function __construct(QRBenefitService $qrBenefitService)
+    public function __construct(AuthService $service)
     {
-        $this->qrBenefitService = $qrBenefitService;
+        $this->service = $service;
     }
 
     /**
@@ -30,7 +30,7 @@ class QRBenefitController extends Controller
      */
     public function login(Request $request)
     {
-        $response = $this->successResponse($this->qrBenefitService->login($request->all()));
+        $response = $this->successResponse($this->service->login($request->all()));
         return $response;
     }
 
@@ -39,7 +39,7 @@ class QRBenefitController extends Controller
      */
     public function info()
     {
-        $response = $this->successResponse($this->qrBenefitService->info());
+        $response = $this->successResponse($this->service->info());
         return $response;
     }
 }

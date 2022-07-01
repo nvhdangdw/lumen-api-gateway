@@ -15,5 +15,6 @@
             "username": "lumen",
             "password": "lumen"
         }
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }

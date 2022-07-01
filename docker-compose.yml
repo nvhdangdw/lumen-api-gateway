@@ -6,10 +6,12 @@ services:
     container_name: mba-nginx
     ports:
       - ${NGINX_LUMEN_AG_PORT}:80
-      - ${NGINX_ORDER_PORT}:81
+      - ${NGINX_TRANSACTION_PORT}:81
       - ${NGINX_PRODUCT_PORT}:82
       - ${NGINX_QR_BENEFIT_PORT}:83
       - ${NGINX_OPENCART_PORT}:84
+      - 1000:1000
+      - 2001:2001
     volumes:
       - ./src:/var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
@@ -17,7 +19,6 @@ services:
       - ./logs/nginx/error.log:/var/log/nginx/error.log
     networks:
       - mba-lumen-AG
-
 
   # PHP service
   api-gateway:
@@ -109,6 +110,51 @@ services:
     networks:
       - mba-lumen-AG
 
+  # RabbitMQ (Message Queue)
+  rabbitmq:
+    image: rabbitmq:3.8
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASSWORD: guest
+      RABBITMQ_DEFAULT_VHOST: /
+      RABBITMQ_SSL_CACERTFILE: /rootCA.pem
+      RABBITMQ_SSL_CERTFILE: /rootCA.pem
+      RABBITMQ_SSL_KEYFILE: /rootCA.key
+      RABBITMQ_SSL_VERIFY: verify_none
+      RABBITMQ_SSL_FAIL_IF_NO_PEER_CERT: "false"
+    volumes:
+      - "./keys/rabbitmq/rootCA.pem:/rootCA.pem:ro"
+      - "./keys/rabbitmq/rootCA.key:/rootCA.key:ro"
+    ports:
+      - "${RABBITMQ_15671_PORT}:15671"
+      - "${RABBITMQ_15672_PORT}:15672"
+      - "${RABBITMQ_5671_PORT}:5671"
+      - "${RABBITMQ_5672_PORT}:5672"
+    networks:
+      - mba-lumen-AG
+
+  # GUI Manage RabbitMQ
+  # rabbitmq-management:
+  #   image: rabbitmq:management
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: guest
+  #     RABBITMQ_DEFAULT_PASSWORD: guest
+  #     RABBITMQ_DEFAULT_VHOST: /
+  #     RABBITMQ_MANAGEMENT_SSL_CACERTFILE: /rootCA.pem
+  #     RABBITMQ_MANAGEMENT_SSL_CERTFILE: /rootCA.pem
+  #     RABBITMQ_MANAGEMENT_SSL_KEYFILE: /rootCA.key
+  #     RABBITMQ_MANAGEMENT_SSL_VERIFY: verify_none
+  #     RABBITMQ_MANAGEMENT_SSL_FAIL_IF_NO_PEER_CERT: "false"
+  #   volumes:
+  #     - "./keys/rabbitmq/rootCA.pem:/rootCA.pem:ro"
+  #     - "./keys/rabbitmq/rootCA.key:/rootCA.key:ro"
+  #   ports:
+  #     - "${RABBITMQ_15671_PORT}:15671"
+  #     - "${RABBITMQ_15672_PORT}:15672"
+  #     - "${RABBITMQ_5671_PORT}:5671"
+  #     - "${RABBITMQ_5672_PORT}:5672"
+  #   networks:
+  #     - mba-lumen-AG
 
 networks:
   mba-lumen-AG:

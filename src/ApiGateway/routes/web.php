@@ -17,9 +17,20 @@ declare(strict_types=1);
 $router->post('/register', 'UserController@register');
 
 $router->group(['prefix' => 'api', 'middleware' => 'client.credentials'], function () use ($router) {
+
     $router->group(['prefix' => 'qr-benefit', 'middleware' => 'scope:qr-benefit'], function () use ($router) {
-        $router->post('/login', ['uses' => 'QRBenefitController@login']);
-        $router->get('/info', ['uses' => 'QRBenefitController@info']);
+
+        // NOTE: Monolithic
+        $router->group([ 'prefix' => 'monolithic' ], function() use ($router) {
+            $router->post('/login', ['uses' => 'QRBenefitMonolithicController@login']);
+            $router->get('/info', ['uses' => 'QRBenefitMonolithicController@info']);
+        });
+
+        // NOTE: Microservice
+        $router->group([ 'prefix' => 'service' ], function() use ($router) {
+            $router->post('/login', ['uses' => 'QRBenefitController@login']);
+            $router->get('/info', ['uses' => 'QRBenefitController@info']);
+        });
     });
 
     $router->group(['prefix' => 'product', 'middleware' => 'scope:product'], function () use ($router) {
