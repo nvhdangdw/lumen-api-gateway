@@ -42,4 +42,13 @@ class QRBenefitController extends Controller
         $response = $this->successResponse($this->service->info());
         return $response;
     }
+
+    /**
+     * @return mixed
+     */
+    public function passwordForgot(Request $request)
+    {
+        $response = $this->successResponse($this->service->passwordForgot($request->all()));
+        return $response;
+    }
 }

@@ -42,6 +42,14 @@ class AuthService
     /**
      * @return string
      */
+    public function passwordForgot(array $data) : string
+    {
+        return $this->request('POST', '/api/store/password/forgot', $data);
+    }
+
+    /**
+     * @return string
+     */
     public function info() : string
     {
         return $this->request('GET', '/api/store/info');

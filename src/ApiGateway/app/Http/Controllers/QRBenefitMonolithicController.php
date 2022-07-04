@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Http\Controllers\Monolithic;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\QRBenefitMonolithic;
@@ -40,6 +40,15 @@ class QRBenefitMonolithicController extends Controller
     public function info()
     {
         $response = $this->successResponse($this->service->info());
+        return $response;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function passwordForgot(Request $request)
+    {
+        $response = $this->successResponse($this->service->passwordForgot($request->all()));
         return $response;
     }
 }

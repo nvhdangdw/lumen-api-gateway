@@ -24,12 +24,13 @@ $router->group(['prefix' => 'api', 'middleware' => 'client.credentials'], functi
         $router->group([ 'prefix' => 'monolithic' ], function() use ($router) {
             $router->post('/login', ['uses' => 'QRBenefitMonolithicController@login']);
             $router->get('/info', ['uses' => 'QRBenefitMonolithicController@info']);
+            $router->post('/password/forgot', ['uses' => 'QRBenefitMonolithicController@passwordForgot']);
         });
 
         // NOTE: Microservice
         $router->group([ 'prefix' => 'service' ], function() use ($router) {
             $router->post('/login', ['uses' => 'QRBenefitController@login']);
-            $router->get('/info', ['uses' => 'QRBenefitController@info']);
+            $router->post('/password/forgot', ['uses' => 'QRBenefitController@passwordForgot']);
         });
     });
 

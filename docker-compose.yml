@@ -102,8 +102,6 @@ services:
   mailhog:
     image: mailhog/mailhog
     container_name: mba-mailhog
-    logging:
-      driver: 'none'  # disable saving logs
     ports:
       - ${MAIL_SMTP_PORT}:1025 # smtp server
       - ${MAIL_WEB_PORT}:8025 # web ui

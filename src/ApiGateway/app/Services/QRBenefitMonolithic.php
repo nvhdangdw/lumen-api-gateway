@@ -40,10 +40,18 @@ class QRBenefitMonolithic
 
     /**
      * @return string
-     */
+    */
     public function login(array $data) : string
     {
         return $this->request('POST', '/api/store/login', $data);
+    }
+
+    /**
+     * @return string
+     */
+    public function passwordForgot(array $data) : string
+    {
+        return $this->request('POST', '/api/store/password/forgot', $data);
     }
 
     /**
