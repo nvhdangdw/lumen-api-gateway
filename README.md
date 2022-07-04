@@ -39,7 +39,7 @@ gitGraph
 ```mermaid
 classDiagram
     Docker <|-- API_Gateway
-    Docker <|-- Opencat
+    Docker <|-- Opencart
     Docker: API_Gateway
     Docker: Opencart
 
@@ -48,7 +48,7 @@ classDiagram
     class API_Gateway{
       - php-fpm:7.2.*
     }
-    class Opencat{
+    class Opencart{
         - php-fpm:7.1.*
     }
     class QR_BENEFIT_Microservice{
