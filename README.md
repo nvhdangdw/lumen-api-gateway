@@ -23,9 +23,44 @@ docker compose exec app bash
 rm -rf {ApiGateway,OrdersService,ProductsApi,QRBenefitService}/storage/logs/*
 chmod 775 -R {ApiGateway,OrdersService,ProductsApi,QRBenefitService}/storage/logs
 ```
+# GIT
+```mermaid
+gitGraph
+       checkout main
+       commit id:"create docker"
+       branch beta
+       commit id:"Add opencart and qr_benefit"
+       branch microservice
+       commit id:"Compare: monolithic and microservice"
+```
 # Document
 ## Workflow
 ### 1. Structure
+```mermaid
+classDiagram
+    Docker <|-- API_Gateway
+    Docker <|-- Opencat
+    Docker: API_Gateway
+    Docker: Opencart
+
+    API_Gateway <|-- QR_BENEFIT_Microservice
+    API_Gateway <|-- QR_BENEFIT_Monolithic
+    class API_Gateway{
+      - php-fpm:7.2.*
+    }
+    class Opencat{
+        - php-fpm:7.1.*
+    }
+    class QR_BENEFIT_Microservice{
+        - Service: Auth
+        - Service: Transaction
+        - Service: Activity
+    }
+    class QR_BENEFIT_Monolithic{
+        - Full API
+    }
+
+```
 ![](https://cdn.shortpixel.ai/spai/w_800+q_lossy+ret_img+to_webp/https://ftxinfotech.com/wp-content/uploads/2020/03/microservice.png)
 
 `Microservices are used when an application`
