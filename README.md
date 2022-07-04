@@ -8,7 +8,7 @@
 * rabbitmq
 * adminer `web GUI`
 * redis-commander `web GUI`
-* mailhog `servcie and web GUI`
+* mailhog `service and web GUI`
 ## Run
 ```
 docker compose up
