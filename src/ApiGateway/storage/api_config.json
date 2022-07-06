@@ -1,0 +1,136 @@
+{
+  "api_config": [
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/customer",
+      "destination": "/api/store/Acustomer"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/customer/{customer_id}",
+      "destination": "/api/store/customer/{customer_id}"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/customer",
+      "destination": "/api/store/customer"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/customer/update",
+      "destination": "/api/store/customer/update"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/total-customers",
+      "destination": "/api/store/total-customers"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/customer/scan",
+      "destination": "/api/store/customer/scan"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/customer/qrcode",
+      "destination": "/api/store/customer/qrcode"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/transaction",
+      "destination": "/api/store/transaction"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/transaction",
+      "destination": "/api/store/transaction"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/promotion",
+      "destination": "/api/store/promotion"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/promotions",
+      "destination": "/api/store/promotions"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/available-promotions",
+      "destination": "/api/store/available-promotions"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/login",
+      "destination": "/api/store/login"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/logout",
+      "destination": "/api/store/logout"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/password/forgot",
+      "destination": "/api/store/password/forgot"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/password/reset",
+      "destination": "/api/store/password/reset"
+    },
+    {
+      "method": "GET",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/info",
+      "destination": "/api/store/info"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/user",
+      "destination": "/api/store/user"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/tfa/verify_code",
+      "destination": "/api/store/tfa/verify_code"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/tfa/info",
+      "destination": "/api/store/tfa/info"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/tfa/enabled",
+      "destination": "/api/store/tfa/enabled"
+    },
+    {
+      "method": "POST",
+      "host": "qr_benefits",
+      "url": "/qr-benefits/api/store/tfa/disabled",
+      "destination": "/api/store/tfa/disabled"
+    }
+  ]
+}
