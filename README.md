@@ -86,6 +86,8 @@ graph TD
     Model --> Service
     Model --> |or| Controller
 ```
+### 4. QR_BENEFIT
+
 ## Database
 ### 1. <a href="https://www.theserverside.com/answer/Synchronous-vs-asynchronous-microservices-communication-patterns#:~:text=There%20are%20three%20ways%20to,hybrid%2C%20which%20supports%20both">Synchronous vs. asynchronous microservices communication patterns</a>
 ![](https://cdn.ttgtmedia.com/rms/onlineimages/serverside-synchronous_inter_service_communication-f.png)
