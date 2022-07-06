@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MySql" id="Project-120e" database="MySql" >
+	<schema name="ptn_mba_qr_transaction" >
+		<table name="account_recovery" row_count="0" spec="" >
+			<column name="account_recovery_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="email" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="token" type="VARCHAR" length="64" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="status" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_account_recovery" unique="PRIMARY_KEY" >
+				<column name="account_recovery_id" />
+			</index>
+			<index name="fk_account_recovery_users" unique="NORMAL" >
+				<column name="email" />
+			</index>
+			<fk name="fk_account_recovery_users" to_schema="ptn_mba_qr_transaction" to_table="users" >
+				<fk_column name="email" pk="email" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="api_activity" row_count="0" spec="" >
+			<column name="id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[current_timestamp()]]></defo>
+			</column>
+			<column name="route" type="VARCHAR" length="64" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="method" type="VARCHAR" length="32" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="payload" type="TEXT" jt="-1" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="status_code" type="SMALLINT" length="6" jt="5" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="response" type="TEXT" jt="-1" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_api_activity" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_api_activity_users" to_schema="ptn_mba_qr_transaction" to_table="users" >
+				<fk_column name="id" pk="id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="campaign" row_count="0" spec="" >
+			<column name="campaign_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="campaign_type_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="campaign_status_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="name" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="description" type="VARCHAR" length="500" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_campaign" unique="PRIMARY_KEY" >
+				<column name="campaign_id" />
+			</index>
+			<fk name="fk_campaign_campaign_status" to_schema="ptn_mba_qr_transaction" to_table="campaign_status" >
+				<fk_column name="campaign_status_id" pk="campaign_status_id" />
+			</fk>
+			<fk name="fk_campaign_campaign_type" to_schema="ptn_mba_qr_transaction" to_table="campaign_type" >
+				<fk_column name="campaign_type_id" pk="campaign_type_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="campaign_status" row_count="0" spec="" >
+			<column name="campaign_status_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="50" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_campaign_status" unique="PRIMARY_KEY" >
+				<column name="campaign_status_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="campaign_type" row_count="0" spec="" >
+			<column name="campaign_type_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_campaign_type" unique="PRIMARY_KEY" >
+				<column name="campaign_type_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="customer" row_count="0" spec="" >
+			<column name="customer_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="firstname" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="lastname" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="email" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="telephone" type="VARCHAR" length="12" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="hashcode" type="VARCHAR" length="256" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="external_id" type="VARCHAR" length="32" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="customer_group_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="address_line_1" type="VARCHAR" length="128" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="address_line_2" type="VARCHAR" length="128" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="suburb" type="VARCHAR" length="50" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="state" type="VARCHAR" length="50" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="order_membership_card" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="pk_customer" unique="PRIMARY_KEY" >
+				<column name="customer_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="discount" row_count="0" spec="" >
+			<column name="discount_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="code" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="type" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="discount_amount" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="start_date" type="DATE" jt="91" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="end_date" type="DATE" jt="91" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="store_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="description" type="VARCHAR" length="500" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_discount" unique="PRIMARY_KEY" >
+				<column name="discount_id" />
+			</index>
+			<fk name="fk_discount_store" to_schema="ptn_mba_qr_transaction" to_table="store" >
+				<fk_column name="store_id" pk="store_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="group_permission" row_count="0" spec="" >
+			<column name="group_permission_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="group_user_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="permission_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_group_permission" unique="PRIMARY_KEY" >
+				<column name="group_permission_id" />
+			</index>
+			<index name="fk_group_permission_group_user" unique="NORMAL" >
+				<column name="group_user_id" />
+			</index>
+			<index name="fk_group_permission_permission" unique="NORMAL" >
+				<column name="permission_id" />
+			</index>
+			<fk name="fk_group_permission_group_user" to_schema="ptn_mba_qr_transaction" to_table="group_user" >
+				<fk_column name="group_user_id" pk="group_user_id" />
+			</fk>
+			<fk name="fk_group_permission_permission" to_schema="ptn_mba_qr_transaction" to_table="permission" >
+				<fk_column name="permission_id" pk="permission_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="group_user" row_count="0" spec="" >
+			<column name="group_user_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_group_user" unique="PRIMARY_KEY" >
+				<column name="group_user_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="migrations" row_count="30" spec="" >
+			<column name="id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="migration" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="batch" type="INT" length="11" jt="4" mandatory="y" />
+			<index name="pk_migrations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="order" row_count="0" spec="" >
+			<column name="order_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="customer_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="store_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="user_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="total_tax" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="total_discount" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="total_amount" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="vouchers_redeemed" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="promotion_codes" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_order" unique="PRIMARY_KEY" >
+				<column name="order_id" />
+			</index>
+			<fk name="fk_order_store" to_schema="ptn_mba_qr_transaction" to_table="store" >
+				<fk_column name="store_id" pk="store_id" />
+			</fk>
+			<fk name="fk_order_customer" to_schema="ptn_mba_qr_transaction" to_table="customer" >
+				<fk_column name="customer_id" pk="customer_id" />
+			</fk>
+			<fk name="fk_order_users" to_schema="ptn_mba_qr_transaction" to_table="users" >
+				<fk_column name="user_id" pk="id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="order_discount" row_count="0" spec="" >
+			<column name="order_discount_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="order_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="discount_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_order_discount" unique="PRIMARY_KEY" >
+				<column name="order_discount_id" />
+			</index>
+			<index name="unq_order_discount_order_id" unique="UNIQUE_KEY" >
+				<column name="order_id" />
+			</index>
+			<fk name="fk_order_discount_order" to_schema="ptn_mba_qr_transaction" to_table="order" >
+				<fk_column name="order_id" pk="order_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="password_resets" row_count="0" spec="" >
+			<column name="email" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="token" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="password_resets_email_index" unique="UNIQUE_KEY" >
+				<column name="email" />
+			</index>
+			<fk name="fk_password_resets_users" to_schema="ptn_mba_qr_transaction" to_table="users" >
+				<fk_column name="email" pk="email" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="permission" row_count="0" spec="" >
+			<column name="permission_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="key" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="name" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_permission" unique="PRIMARY_KEY" >
+				<column name="permission_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="product" row_count="0" spec="" >
+			<column name="product_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="price" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="product_type" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="description" type="VARCHAR" length="500" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_product" unique="PRIMARY_KEY" >
+				<column name="product_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="promotion" row_count="0" spec="" >
+			<column name="promotion_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="campaign_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="promotion_type_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="code" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="discount_amount" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="maximum_rewards" type="MEDIUMINT" length="9" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="reward_trigger_count" type="MEDIUMINT" length="9" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="reward_count" type="MEDIUMINT" length="9" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="start_date" type="DATE" jt="91" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="end_date" type="DATE" jt="91" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="store_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="reward_expiry_mode_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="warning_day_before_expiry" type="MEDIUMINT" length="9" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="description" type="VARCHAR" length="500" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_promotion" unique="PRIMARY_KEY" >
+				<column name="promotion_id" />
+			</index>
+			<index name="unq_promotion_code" unique="UNIQUE_KEY" >
+				<column name="code" />
+			</index>
+			<fk name="fk_promotion_campaign" to_schema="ptn_mba_qr_transaction" to_table="campaign" >
+				<fk_column name="campaign_id" pk="campaign_id" />
+			</fk>
+			<fk name="fk_promotion_promotion_type" to_schema="ptn_mba_qr_transaction" to_table="promotion_type" >
+				<fk_column name="promotion_type_id" pk="promotion_type_id" />
+			</fk>
+			<fk name="fk_promotion_reward_expiry_mode" to_schema="ptn_mba_qr_transaction" to_table="reward_expiry_mode" >
+				<fk_column name="reward_expiry_mode_id" pk="reward_expiry_mode_id" />
+			</fk>
+			<fk name="fk_promotion_store" to_schema="ptn_mba_qr_transaction" to_table="store" >
+				<fk_column name="store_id" pk="store_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="promotion_reward" row_count="0" spec="" >
+			<column name="promotion_reward_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="transaction_id" type="BIGINT" length="20" jt="-5" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="customer_id" type="BIGINT" length="20" jt="-5" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="promotion_id" type="BIGINT" length="20" jt="-5" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="is_used" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="is_expired" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_promotion_reward" unique="PRIMARY_KEY" >
+				<column name="promotion_reward_id" />
+			</index>
+			<fk name="fk_promotion_reward_customer" to_schema="ptn_mba_qr_transaction" to_table="customer" >
+				<fk_column name="customer_id" pk="customer_id" />
+			</fk>
+			<fk name="fk_promotion_reward_transaction" to_schema="ptn_mba_qr_transaction" to_table="transaction" >
+				<fk_column name="transaction_id" pk="transaction_id" />
+			</fk>
+			<fk name="fk_promotion_reward_promotion" to_schema="ptn_mba_qr_transaction" to_table="promotion" >
+				<fk_column name="promotion_id" pk="promotion_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="promotion_type" row_count="0" spec="" >
+			<column name="promotion_type_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="255" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="purchase_product_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="reward_product_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_promotion_type" unique="PRIMARY_KEY" >
+				<column name="promotion_type_id" />
+			</index>
+			<fk name="fk_promotion_type_product" to_schema="ptn_mba_qr_transaction" to_table="product" >
+				<fk_column name="purchase_product_id" pk="product_id" />
+			</fk>
+			<fk name="fk_promotion_type_product_0" to_schema="ptn_mba_qr_transaction" to_table="product" >
+				<fk_column name="reward_product_id" pk="product_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="reward_expiry_mode" row_count="0" spec="" >
+			<column name="reward_expiry_mode_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="30" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_reward_expiry_mode" unique="PRIMARY_KEY" >
+				<column name="reward_expiry_mode_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="setting" row_count="0" spec="" >
+			<column name="setting_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="store_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="key" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="value" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_setting" unique="PRIMARY_KEY" >
+				<column name="setting_id" />
+			</index>
+			<fk name="fk_setting_store" to_schema="ptn_mba_qr_transaction" to_table="store" >
+				<fk_column name="store_id" pk="store_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="store" row_count="0" spec="" >
+			<column name="store_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="60" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="phone_number" type="VARCHAR" length="12" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="email" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="default_tax" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="logo" type="VARCHAR" length="255" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_store" unique="PRIMARY_KEY" >
+				<column name="store_id" />
+			</index>
+			<index name="store_email_unique" unique="UNIQUE_KEY" >
+				<column name="email" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="transaction" row_count="0" spec="" >
+			<column name="transaction_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="customer_id" type="INT" length="10" jt="4" mandatory="y" />
+			<column name="store_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="user_id" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="total_tax" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="total_discount" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="total_amount" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="vouchers_redeemed" type="TINYINT" length="1" jt="-6" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="promotion_codes" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="product_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="qty" type="MEDIUMINT" length="9" jt="4" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="amount" type="DECIMAL" length="10" decimal="2" jt="3" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<index name="pk_transaction" unique="PRIMARY_KEY" >
+				<column name="transaction_id" />
+			</index>
+			<index name="unq_transaction_promotion_codes" unique="UNIQUE_KEY" >
+				<column name="promotion_codes" />
+			</index>
+			<fk name="fk_transaction_customer" to_schema="ptn_mba_qr_transaction" to_table="customer" >
+				<fk_column name="customer_id" pk="customer_id" />
+			</fk>
+			<fk name="fk_transaction_product" to_schema="ptn_mba_qr_transaction" to_table="product" >
+				<fk_column name="product_id" pk="product_id" />
+			</fk>
+			<fk name="fk_transaction_promotion" to_schema="ptn_mba_qr_transaction" to_table="promotion" >
+				<fk_column name="promotion_codes" pk="code" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="users" row_count="0" spec="" >
+			<column name="id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="email" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="email_verified_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="password" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="remember_token" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="updated_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[NULL]]></defo>
+			</column>
+			<column name="group_user_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="store_id" type="INT" length="10" jt="4" mandatory="y" unsigned="y" />
+			<column name="tfa_secret" type="VARCHAR" length="50" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="tfa_src_qrcode" type="TEXT" jt="-1" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="tfa_enabled" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="tfa_token" type="VARCHAR" length="60" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<column name="avatar" type="VARCHAR" length="255" jt="12" >
+				<defo><![CDATA[NULL]]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_ci]]></column_options>
+			</column>
+			<index name="pk_users" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="users_email_unique" unique="UNIQUE_KEY" >
+				<column name="email" />
+			</index>
+			<index name="fk_users_group_user" unique="NORMAL" >
+				<column name="group_user_id" />
+			</index>
+			<index name="fk_users_store" unique="NORMAL" >
+				<column name="store_id" />
+			</index>
+			<fk name="fk_users_group_user" to_schema="ptn_mba_qr_transaction" to_table="group_user" >
+				<fk_column name="group_user_id" pk="group_user_id" />
+			</fk>
+			<fk name="fk_users_store" to_schema="ptn_mba_qr_transaction" to_table="store" >
+				<fk_column name="store_id" pk="store_id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+	</schema>
+	<connector name="MySql" database="MySql" driver_class="com.mysql.jdbc.Driver" driver_jar="mysql-connector-java-8.0.29.jar" url="jdbc:mysql://localhost:3306/ptn_mba_qr_transaction" host="localhost" port="3306" user="root" />
+	<layout name="Main Layout" id="Layout-15ad" show_relation="columns" >
+		<entity schema="ptn_mba_qr_transaction" name="account_recovery" color="BED3F4" x="64" y="480" />
+		<entity schema="ptn_mba_qr_transaction" name="api_activity" color="BED3F4" x="64" y="736" />
+		<entity schema="ptn_mba_qr_transaction" name="campaign" color="C7F4BE" x="1424" y="240" />
+		<entity schema="ptn_mba_qr_transaction" name="campaign_status" color="C7F4BE" x="1728" y="208" />
+		<entity schema="ptn_mba_qr_transaction" name="campaign_type" color="C7F4BE" x="1744" y="336" />
+		<entity schema="ptn_mba_qr_transaction" name="customer" color="BED3F4" x="768" y="928" />
+		<entity schema="ptn_mba_qr_transaction" name="group_permission" color="BED3F4" x="240" y="112" />
+		<entity schema="ptn_mba_qr_transaction" name="group_user" color="BED3F4" x="448" y="128" />
+		<entity schema="ptn_mba_qr_transaction" name="password_resets" color="BED3F4" x="64" y="320" />
+		<entity schema="ptn_mba_qr_transaction" name="permission" color="BED3F4" x="48" y="112" />
+		<entity schema="ptn_mba_qr_transaction" name="product" color="BED3F4" x="752" y="1376" />
+		<entity schema="ptn_mba_qr_transaction" name="promotion" color="F4DDBE" x="1280" y="592" />
+		<entity schema="ptn_mba_qr_transaction" name="promotion_reward" color="F4DDBE" x="1280" y="1216" />
+		<entity schema="ptn_mba_qr_transaction" name="promotion_type" color="F4DDBE" x="1632" y="1360" />
+		<entity schema="ptn_mba_qr_transaction" name="reward_expiry_mode" color="BED3F4" x="1664" y="752" />
+		<entity schema="ptn_mba_qr_transaction" name="setting" color="BED3F4" x="1184" y="96" />
+		<entity schema="ptn_mba_qr_transaction" name="store" color="BED3F4" x="944" y="80" />
+		<entity schema="ptn_mba_qr_transaction" name="transaction" color="BED3F4" x="208" y="1072" />
+		<entity schema="ptn_mba_qr_transaction" name="users" color="BED3F4" x="336" y="336" />
+		<group name="user_service" color="ECF0F7" >
+			<entity schema="ptn_mba_qr_transaction" name="permission" />
+			<entity schema="ptn_mba_qr_transaction" name="group_permission" />
+			<entity schema="ptn_mba_qr_transaction" name="group_user" />
+			<entity schema="ptn_mba_qr_transaction" name="password_resets" />
+			<entity schema="ptn_mba_qr_transaction" name="account_recovery" />
+			<entity schema="ptn_mba_qr_transaction" name="users" />
+		</group>
+		<group name="store_service" color="C4E0F9" >
+			<entity schema="ptn_mba_qr_transaction" name="store" />
+			<entity schema="ptn_mba_qr_transaction" name="setting" />
+		</group>
+		<group name="promotion_service" color="C4E0F9" >
+			<entity schema="ptn_mba_qr_transaction" name="reward_expiry_mode" />
+			<entity schema="ptn_mba_qr_transaction" name="promotion" />
+			<entity schema="ptn_mba_qr_transaction" name="promotion_type" />
+			<entity schema="ptn_mba_qr_transaction" name="promotion_reward" />
+		</group>
+		<group name="campaign_service" color="80B380" >
+			<entity schema="ptn_mba_qr_transaction" name="campaign" />
+			<entity schema="ptn_mba_qr_transaction" name="campaign_status" />
+			<entity schema="ptn_mba_qr_transaction" name="campaign_type" />
+		</group>
+		<group name="api_service" color="FF9999" >
+			<entity schema="ptn_mba_qr_transaction" name="api_activity" />
+		</group>
+		<group name="transaction_service" color="4D3399" >
+			<entity schema="ptn_mba_qr_transaction" name="transaction" />
+		</group>
+		<group name="customer_service" color="FFFF4D" >
+			<entity schema="ptn_mba_qr_transaction" name="customer" />
+		</group>
+		<group name="product_service" color="B31A1A" >
+			<entity schema="ptn_mba_qr_transaction" name="product" />
+		</group>
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-2b2" show_column_type="y" show_relation="columns" >
+		<entity schema="ptn_mba_qr_transaction" name="account_recovery" color="BED3F4" x="704" y="736" />
+		<entity schema="ptn_mba_qr_transaction" name="api_activity" color="BED3F4" x="960" y="736" />
+		<entity schema="ptn_mba_qr_transaction" name="campaign" color="BED3F4" x="688" y="976" />
+		<entity schema="ptn_mba_qr_transaction" name="campaign_status" color="C7F4BE" x="1808" y="48" />
+		<entity schema="ptn_mba_qr_transaction" name="campaign_type" color="C7F4BE" x="2064" y="48" />
+		<entity schema="ptn_mba_qr_transaction" name="customer" color="BED3F4" x="400" y="592" />
+		<entity schema="ptn_mba_qr_transaction" name="discount" color="BED3F4" x="704" y="432" />
+		<entity schema="ptn_mba_qr_transaction" name="group_permission" color="BED3F4" x="1216" y="736" />
+		<entity schema="ptn_mba_qr_transaction" name="group_user" color="BED3F4" x="1488" y="736" />
+		<entity schema="ptn_mba_qr_transaction" name="migrations" color="BED3F4" x="1216" y="1008" />
+		<entity schema="ptn_mba_qr_transaction" name="order" color="BED3F4" x="1216" y="416" />
+		<entity schema="ptn_mba_qr_transaction" name="order_discount" color="BED3F4" x="1520" y="416" />
+		<entity schema="ptn_mba_qr_transaction" name="password_resets" color="BED3F4" x="960" y="1008" />
+		<entity schema="ptn_mba_qr_transaction" name="permission" color="BED3F4" x="960" y="1232" />
+		<entity schema="ptn_mba_qr_transaction" name="product" color="BED3F4" x="672" y="1232" />
+		<entity schema="ptn_mba_qr_transaction" name="promotion" color="BED3F4" x="48" y="976" />
+		<entity schema="ptn_mba_qr_transaction" name="promotion_reward" color="F4DDBE" x="1808" y="1184" />
+		<entity schema="ptn_mba_qr_transaction" name="promotion_type" color="F4DDBE" x="2096" y="1184" />
+		<entity schema="ptn_mba_qr_transaction" name="reward_expiry_mode" color="BED3F4" x="400" y="976" />
+		<entity schema="ptn_mba_qr_transaction" name="setting" color="BED3F4" x="144" y="736" />
+		<entity schema="ptn_mba_qr_transaction" name="store" color="BED3F4" x="112" y="320" />
+		<entity schema="ptn_mba_qr_transaction" name="transaction" color="BED3F4" x="400" y="224" />
+		<entity schema="ptn_mba_qr_transaction" name="users" color="BED3F4" x="704" y="48" />
+		<script name="SQL Editor" id="Editor-a59" language="SQL" >
+			<string><![CDATA[SELECT account_recovery_id, email, token, `status`, created_at, updated_at
+FROM
+	ptn_mba_qr_transaction.account_recovery y;]]></string>
+		</script>
+		<browser id="Browse-19a0" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="ptn_mba_qr_transaction" entity="account_recovery" x="20" y="20" width="400" height="300" />
+		</browser>
+		<query id="Query-549" name="Query Builder" >
+			<query_table schema="ptn_mba_qr_transaction" name="account_recovery" alias="ar" x="48" y="48" >
+				<column name="account_recovery_id" />
+				<column name="email" />
+				<column name="token" />
+				<column name="status" />
+				<column name="created_at" />
+				<column name="updated_at" />
+			</query_table>
+		</query>
+		<form name="Report" id="Report-1c41" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Account_recovery Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="account_recovery_id" type="4" />
+						<var name="email" />
+						<var name="token" />
+						<var name="status" type="-6" />
+						<var name="created_at" type="93" />
+						<var name="updated_at" type="93" />
+						<script ><![CDATA[SELECT * FROM ptn_mba_qr_transaction.account_recovery]]></script>
+					</form_script>
+					<param name="i0" value="token" />
+					<param name="width" value="100%" />
+					<param name="v0" value="status" />
+					<param name="title" value="Sample Chart" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="account_recovery_id" type="4" />
+						<var name="email" />
+						<var name="token" />
+						<var name="status" type="-6" />
+						<var name="created_at" type="93" />
+						<var name="updated_at" type="93" />
+						<script ><![CDATA[SELECT * FROM ptn_mba_qr_transaction.account_recovery]]></script>
+					</form_script>
+					<cell type="label" name="account_recovery_id" pos="0,0,0,0,c,c" />
+					<cell type="label" name="email" pos="1,0,1,0,c,c" />
+					<cell type="label" name="token" pos="2,0,2,0,c,c" />
+					<cell type="label" name="status" pos="3,0,3,0,c,c" />
+					<cell type="label" name="created_at" pos="4,0,4,0,c,c" />
+					<cell type="label" name="updated_at" pos="5,0,5,0,c,c" />
+					<cell type="label" name="Button can open other pages." pos="6,0,6,0,c,c" />
+					<cell type="label" name="${account_recovery_id}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${email}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${token}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${status}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${created_at}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="label" name="${updated_at}" template="Plain" pos="5,1,5,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-default btn-success" pos="6,1,6,1,c,c" ref_id="Report-1c41" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="FA-ANGLE_DOUBLE_LEFT" ref_id="Report-1c41" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="FA-ANGLE_LEFT" ref_id="Report-1c41" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="FA-ANGLE_RIGHT" ref_id="Report-1c41" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>
