@@ -40,14 +40,6 @@ class QRBenefitMonolithic
 
     /**
      * @return string
-    */
-    public function login(array $data) : string
-    {
-        return $this->request('POST', '/api/store/login', $data);
-    }
-
-    /**
-     * @return string
      */
     public function passwordForgot(array $data) : string
     {
@@ -57,8 +49,9 @@ class QRBenefitMonolithic
     /**
      * @return string
      */
-    public function info() : string
+    public function get(array $data) : string
     {
-        return $this->request('GET', '/api/store/info');
+        $headers = array_merge($this->headers, config('json.headers'));
+        return $this->get($data['path'], $headers);
     }
 }

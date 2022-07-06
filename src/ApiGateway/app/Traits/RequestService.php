@@ -17,7 +17,7 @@ trait RequestService
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function request($method, $requestUrl, $formParams = [], $headers = []) : string
+    public function get($requestUrl, $query = [], $headers = []) : string
     {
         $client = new Client([
             'base_uri' => $this->baseUri
@@ -32,9 +32,9 @@ trait RequestService
             $headers = array_merge($headers, $this->headers);
         }
 
-        $response = $client->request($method, $requestUrl,
+        $response = $client->request('GET', $requestUrl,
             [
-                'form_params' => $formParams,
+                'query' => $query,
                 'headers' => $headers
             ]
         );
