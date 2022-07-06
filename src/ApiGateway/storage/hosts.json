@@ -1,0 +1,23 @@
+{
+    "qr_benefit": {
+        "base_uri": "http://nginx:1000",
+        "secret": "",
+        "header": {
+            "Authorization": "Authorization-Service"
+        }
+    },
+    "opencart": {
+        "base_uri": "http://nginx:1001",
+        "secret": "",
+        "header": {
+            "Authorization": "Authorization-Service"
+        }
+    },
+    "indium": {
+        "base_uri": "http://nginx:1002",
+        "secret": "",
+        "header": {
+            "Authorization": "Authorization-Service"
+        }
+    }
+}

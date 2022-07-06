@@ -26,12 +26,12 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
-      
-        /**Take note of this: Your user authentication access token is generated here **/
+
+        /** Take note of this: Your user authentication access token is generated here **/
         $data['token'] =  $user->createToken('lumen-api-gateway')->accessToken;
         $data['name'] =  $user->name;
 
         return response(['data' => $data, 'message' => 'Account created successfully!', 'status' => true]);
-    }  
-     
+    }
+
 }

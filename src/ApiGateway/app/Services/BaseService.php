@@ -5,12 +5,11 @@ declare(strict_types = 1);
 namespace App\Services;
 
 use function config;
-use function request;
 
 use App\Traits\RequestService;
 use Illuminate\Http\Request;
 
-class QRBenefitMonolithic
+class BaseService
 {
     use RequestService;
 
@@ -29,12 +28,20 @@ class QRBenefitMonolithic
      */
     protected $headers;
 
-    public function __construct()
+    public function __construct(array $options = [])
     {
-        $hostFile = storage_path() . '/host.json';
+        $headers = $options['headers'];
+        $data = $options['data'];
+        $hostFile = storage_path() . '/hosts.json';
         $config = json_decode(file_get_contents($hostFile), true);
-        foreach ($config as $key => $value) {
 
+        // Init service for host
+        $host = collect($config)->filter(function($value, $key) use($options) {
+            $value['host'] = $options['host'];
+        });
+
+        foreach ($host as $config => $value) {
+            $this->baseUri = $key['']
         }
     }
 

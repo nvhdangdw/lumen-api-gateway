@@ -4,12 +4,11 @@ declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
+use App\Services\BaseService;
 use Illuminate\Http\Request;
-use App\Services\QRBenefitMonolithic;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
-class QRBenefitMonolithicController extends Controller
+class BaseController extends Controller
 {
     /**
      * @var \App\Services\QRBenefitMonolithic
@@ -17,13 +16,17 @@ class QRBenefitMonolithicController extends Controller
     protected $service;
 
     /**
-     * OrderController constructor.
+     * Constructor.
      *
-     * @param \App\Services\QRBenefitMonolithic $service
      */
-    public function __construct(QRBenefitMonolithic $service)
+    public function __construct(Request $request, $host, $url)
     {
-        $this->service = new $service;
+        $this->service = new BaseService([
+            'host' => $host,
+            'path' => $url,
+            'data' => $request->all(),
+            'headers' => $request->header(),
+        ]);
     }
 
     /**
