@@ -18,6 +18,7 @@ services:
       - ./logs/nginx/error.log:/var/log/nginx/error.log
     networks:
       - mba-lumen-AG
+      - apisix
 
   # PHP service
   api-gateway:

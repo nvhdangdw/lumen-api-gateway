@@ -26,7 +26,7 @@ class BaseController extends Controller
     public function __construct(BaseService $service)
     {
         $this->service = new $service;
-        $this->config = json_decode(file_get_contents(storage_path() . '/hosts.json'), true);
+
     }
 
     /**
@@ -34,42 +34,20 @@ class BaseController extends Controller
      */
     public function request(Request $request, $host, $url)
     {
-        $config = collect($this->config)->filter(function($value, $hostKey) use ($host) {
-            return $host === $hostKey;
-        })->first();
-
-        $this->service->setHost($host);
-        $this->service->setBaseURI($config['base_uri']);
-        $this->service->customHeaderKeys($request->header(), (array) $config['headers']);
-
-        switch ($request->getMethod()) {
-            case 'GET':
-                return $this->load('GET', $url, $request->all());
-                break;
-
-            case 'POST':
-                return $this->load('POST', $url, $request->all());
-                break;
-
-            case 'PUT':
-                return $this->load('PUT', $url, $request->all());
-                break;
-
-            case 'DELETE':
-                return $this->load('DELETE', $url, $request->all());
-                break;
-
-            default:
-                return $this->errorResponse('Method not allowed!',  400);
-                break;
-        }
+        $this->service->updateConfig($host, $url, $request->getMethod(), $request->header());
+        return $this->load($request->all());
     }
 
     /**
      * @return mixed
      */
-    private function load($method, $url, $data)
+    private function load($data)
     {
-        return $this->successResponse($this->service->load($method, $url, $data));
+        $validator = $this->service->validator();
+
+        if (isset($validator)) {
+            return $this->successResponse($this->service->load($data));
+        }
+        return $this->errorResponse('Method not allowed!',  400);
     }
 }
