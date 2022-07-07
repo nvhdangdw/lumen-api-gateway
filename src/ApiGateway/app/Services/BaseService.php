@@ -13,10 +13,6 @@ class BaseService
 {
     use RequestService;
 
-    /**
-     * @var string
-     */
-    protected $baseUri;
 
     /**
      * @var string
@@ -36,11 +32,6 @@ class BaseService
     /**
      * @var string
      */
-    protected $destination;
-
-    /**
-     * @var string
-     */
     protected $secret;
 
     /**
@@ -51,27 +42,30 @@ class BaseService
     /**
      * @var array
      */
-    protected $hostConfig;
+    protected $api = [];
 
     /**
      * @var array
      */
-    protected $apiConfig;
+    protected $config;
+
+    /**
+     * @var array
+     */
+    protected $hostConfig;
 
     /**
      * @var array
      */
     protected $error = [];
 
-    /**
-     * @var array
-     */
-    protected $api = [];
 
     public function __construct()
     {
-        $this->hostConfig = json_decode(file_get_contents(storage_path() . '/hosts.json'), true);
-        $this->apiConfig = json_decode(file_get_contents(storage_path() . '/api_config.json'), true)['api_config'];
+        $this->config = [
+            'host_config' => json_decode(file_get_contents(storage_path() . '/hosts.json'), true),
+            'api_config' => json_decode(file_get_contents(storage_path() . '/api_config.json'), true)['api_config'],
+        ];
     }
 
     /**
@@ -86,27 +80,26 @@ class BaseService
      */
     public function updateConfig($host, $url, $method, $headers)
     {
-        $config = collect($this->hostConfig)->filter(function($value, $hostKey) use ($host) {
+        $hostConfig = collect($this->config['host_config'])->filter(function($value, $hostKey) use ($host) {
             return $host === $hostKey;
         })->first();
 
-        $this->hostConfig = $config;
-        $this->baseUri = $config['base_uri'];
+        $this->hostConfig = $hostConfig;
         $this->host = $host;
         $this->method = $method;
         $this->url = '/' . $host . '/' . $url;
         $self = $this;
 
         // Get api
-        $this->api = collect($this->apiConfig)->filter(function($item) use($self) {
+        $this->api = collect($this->config['api_config'])->filter(function($item) use($self) {
             return
                 $self->url === $item['url'] &&
                 $self->method === $item['method'];
         })->first();
 
         // Update custom header keys
-        if (isset($config['headers'])) {
-            foreach ($config['headers'] as $key => $cusstomKey) {
+        if (isset($hostConfig['headers'])) {
+            foreach ($hostConfig['headers'] as $key => $cusstomKey) {
                 if (isset($headers[$cusstomKey])) {
                     $this->headers[$key] = $headers[$cusstomKey];
                 }
