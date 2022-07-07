@@ -6,7 +6,6 @@ services:
     container_name: mba-nginx
     ports:
       - ${NGINX_LUMEN_AG_PORT}:80
-      - ${NGINX_TRANSACTION_PORT}:81
       - ${NGINX_PRODUCT_PORT}:82
       - ${NGINX_QR_BENEFIT_PORT}:83
       - ${NGINX_OPENCART_PORT}:84

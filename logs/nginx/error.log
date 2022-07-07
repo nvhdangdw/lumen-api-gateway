@@ -1,0 +1,41 @@
+2022/07/07 16:58:31 [notice] 1#1: using the "epoll" event method
+2022/07/07 16:58:31 [notice] 1#1: nginx/1.23.0
+2022/07/07 16:58:31 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/07/07 16:58:31 [notice] 1#1: OS: Linux 5.10.0-9-amd64
+2022/07/07 16:58:31 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/07/07 16:58:31 [notice] 1#1: start worker processes
+2022/07/07 16:58:31 [notice] 1#1: start worker process 33
+2022/07/07 16:58:46 [error] 33#33: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  require_once(/var/www/ApiGateway/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/ApiGateway/bootstrap/app.php on line 7
+PHP message: PHP Fatal error:  require_once(): Failed opening required '/var/www/ApiGateway/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/ApiGateway/bootstrap/app.php on line 7" while reading response header from upstream, client: 172.19.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "localhost:8000"
+2022/07/07 16:58:46 [error] 33#33: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  require_once(/var/www/ApiGateway/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/ApiGateway/bootstrap/app.php on line 7
+PHP message: PHP Fatal error:  require_once(): Failed opening required '/var/www/ApiGateway/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/ApiGateway/bootstrap/app.php on line 7" while reading response header from upstream, client: 172.19.0.1, server: , request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "localhost:8000", referrer: "http://localhost:8000/"
+2022/07/07 17:27:35 [error] 33#33: *14 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/ApiGateway/storage/logs/lumen-2022-07-07.log" could not be opened in append mode: failed to open stream: Permission denied in /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:115
+Stack trace:
+#0 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php(120): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\RotatingFileHandler->write(Array)
+#2 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#3 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(Symfony\Component\Debug\Exception\FatalThrowableError), Array)
+#4 /var/www/ApiGateway/vendor/illuminate/log/Logger.php(176): Monolog\Logger->error(Object(Symfony\Com...
+PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/ApiGateway/storage/logs/lumen-2022-07-07.log" could not be opened in append mode: failed to open stream: Permission denied in /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:115
+Stack trace:
+#0 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php(120): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\RotatingFileHandler->write(Array)
+#2 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#3 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(Symfony\Component\Debug\Exception\FatalErrorException), Array)
+#4 /var/www/ApiGateway/vendor/illuminate/
+2022/07/07 17:28:17 [error] 33#33: *16 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/ApiGateway/storage/logs/lumen-2022-07-07.log" could not be opened in append mode: failed to open stream: Permission denied in /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:115
+Stack trace:
+#0 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php(120): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\RotatingFileHandler->write(Array)
+#2 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#3 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(Symfony\Component\Debug\Exception\FatalThrowableError), Array)
+#4 /var/www/ApiGateway/vendor/illuminate/log/Logger.php(176): Monolog\Logger->error(Object(Symfony\Com...
+PHP message: PHP Fatal error:  Uncaught UnexpectedValueException: The stream or file "/var/www/ApiGateway/storage/logs/lumen-2022-07-07.log" could not be opened in append mode: failed to open stream: Permission denied in /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:115
+Stack trace:
+#0 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php(120): Monolog\Handler\StreamHandler->write(Array)
+#1 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php(39): Monolog\Handler\RotatingFileHandler->write(Array)
+#2 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(344): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#3 /var/www/ApiGateway/vendor/monolog/monolog/src/Monolog/Logger.php(712): Monolog\Logger->addRecord(400, Object(Symfony\Component\Debug\Exception\FatalErrorException), Array)
+#4 /var/www/ApiGateway/vendor/illuminate/
+2022/07/07 18:22:35 [error] 33#33: *148 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/QRBenefit-Monolithic/public/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/QRBenefit-Monolithic/public/index.php on line 24
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/QRBenefit-Monolithic/public/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/QRBenefit-Monolithic/public/index.php on line 24" while reading response header from upstream, client: 172.19.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "localhost:1000"

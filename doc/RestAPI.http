@@ -65,3 +65,8 @@ Authorization-Service: Bearer {{service_tokenQRBenefit}}
 GET http://localhost:8000/api/qr-benefit/service/info
 Authorization: Bearer {{tokenQRBenefit}}
 Authorization-Service: Bearer {{service_tokenQRBenefit}}
+
+
+###
+
+GET http://localhost:8000/api/qr_benefit/21dsfd/fsdf/dsFds/fsdf3123

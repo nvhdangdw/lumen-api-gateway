@@ -21,6 +21,21 @@ class BaseService
     /**
      * @var string
      */
+    protected $host;
+
+    /**
+     * @var string
+     */
+    protected $url;
+
+    /**
+     * @var string
+     */
+    protected $destination;
+
+    /**
+     * @var string
+     */
     protected $secret;
 
     /**
@@ -28,29 +43,36 @@ class BaseService
      */
     protected $headers;
 
-    public function __construct(array $options = [])
+    public function __construct()
     {
-        $headers = $options['headers'];
-        $data = $options['data'];
-        $hostFile = storage_path() . '/hosts.json';
-        $config = json_decode(file_get_contents($hostFile), true);
+    }
 
-        // Init service for host
-        $host = collect($config)->filter(function($value, $key) use($options) {
-            $value['host'] = $options['host'];
-        });
-
-        foreach ($host as $config => $value) {
-            $this->baseUri = $key['']
+    public function customHeaderKeys(array $headers = array(), array $headerKeys = [])
+    {
+        foreach ($headerKeys as $key => $customKey) {
+            // $this->headers[$key] = $headers[$customKey];
         }
+    }
+
+    public function setHost($host)
+    {
+        $this->host = $host;
+    }
+
+    public function setBaseURI($baseUri)
+    {
+        $this->baseUri = $baseUri;
     }
 
     /**
      * @return string
      */
-    public function post(array $data) : string
+    public function load($method, $url, array $data) : string
     {
-        $headers = array_merge($this->headers, config('json.headers'));
-        return $this->get($data['url'], $headers);
+        $data = [
+            'form_params' => $data
+        ];
+
+        return $this->request($method, $url, $data);
     }
 }

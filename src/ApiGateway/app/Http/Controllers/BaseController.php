@@ -6,50 +6,70 @@ namespace App\Http\Controllers;
 
 use App\Services\BaseService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class BaseController extends Controller
 {
     /**
-     * @var \App\Services\QRBenefitMonolithic
+     * @var \App\Services\BaseService
      */
     protected $service;
+
+    /**
+     * @var array
+     */
+    protected $config;
 
     /**
      * Constructor.
      *
      */
-    public function __construct(Request $request, $host, $url)
+    public function __construct(BaseService $service)
     {
-        $this->service = new BaseService([
-            'host' => $host,
-            'path' => $url,
-            'data' => $request->all(),
-            'headers' => $request->header(),
-        ]);
+        $this->service = new $service;
+        $this->config = json_decode(file_get_contents(storage_path() . '/hosts.json'), true);
     }
 
     /**
      * @return mixed
      */
-    public function post(Request $request)
+    public function request(Request $request, $host, $url)
     {
-        $data = $request->all();
+        $config = collect($this->config)->filter(function($value, $hostKey) use ($host) {
+            return $host === $hostKey;
+        })->first();
 
-        $path = isset($data['path']) ? $data['path'] : '';
+        $this->service->setHost($host);
+        $this->service->setBaseURI($config['base_uri']);
+        $this->service->customHeaderKeys($request->header(), (array) $config['headers']);
 
-        $validates = collect(config('json.validate'))->filter(function ($value, $key) use ($path) {
-            return $value['path'] === $path;
-        })->values('validates');
+        switch ($request->getMethod()) {
+            case 'GET':
+                return $this->load('GET', $url, $request->all());
+                break;
 
-        $validator = Validator::make($data, $validates);
+            case 'POST':
+                return $this->load('POST', $url, $request->all());
+                break;
 
-        if ($validator->fails()) {
-            return $validator->errors();
+            case 'PUT':
+                return $this->load('PUT', $url, $request->all());
+                break;
+
+            case 'DELETE':
+                return $this->load('DELETE', $url, $request->all());
+                break;
+
+            default:
+                return $this->errorResponse('Method not allowed!',  400);
+                break;
         }
+    }
 
-        $response = $this->successResponse($this->service->post($data));
-
-        return $response;
+    /**
+     * @return mixed
+     */
+    private function load($method, $url, $data)
+    {
+        return $this->successResponse($this->service->load($method, $url, $data));
     }
 }
