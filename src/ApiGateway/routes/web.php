@@ -17,7 +17,7 @@ declare(strict_types=1);
 $router->post('/register', 'UserController@register');
 
 
-$router->get('/api/{host}/{url:.*}', 'BaseController@request');
-$router->put('/api/{host}/{url:.*}', 'BaseController@request');
-$router->post('/api/{host}/{url:.*}', 'BaseController@request');
-$router->delete('/api/{host}/{url:.*}', 'BaseController@request');
+$router->get('/api/{host}/{path:.*}', 'BaseController@request');
+$router->put('/api/{host}/{path:.*}', 'BaseController@request');
+$router->post('/api/{host}/{path:.*}', 'BaseController@request');
+$router->delete('/api/{host}/{path:.*}', 'BaseController@request');

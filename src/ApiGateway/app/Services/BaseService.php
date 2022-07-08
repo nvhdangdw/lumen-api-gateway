@@ -61,11 +61,6 @@ class BaseService
     /**
      * @var array
      */
-    protected $error = [];
-
-    /**
-     * @var array
-     */
     protected $api = [];
 
     public function __construct()
@@ -84,31 +79,27 @@ class BaseService
      *
      * @return void
      */
-    public function updateConfig($host, $url, $method, $headers)
+    public function updateConfig($host, $path, $method, $headers)
     {
-        $config = collect($this->hostConfig)->filter(function($value, $hostKey) use ($host) {
+        $this->host = collect($this->hostConfig)->filter(function($value, $hostKey) use ($host) {
             return $host === $hostKey;
         })->first();
 
-        $this->hostConfig = $config;
-        $this->baseUri = $config['base_uri'];
-        $this->host = $host;
-        $this->method = $method;
-        $this->url = '/' . $host . '/' . $url;
-        $self = $this;
-
-        // Get api
-        $this->api = collect($this->apiConfig)->filter(function($item) use($self) {
+        $this->api = collect($this->apiConfig)->filter(function($item) use($host, $path, $method) {
             return
-                $self->url === $item['url'] &&
-                $self->method === $item['method'];
+                $host === $item['host'] &&
+                is_numeric(strpos($item['url'], $path)) &&
+                $method === $item['method'];
         })->first();
 
+        $this->baseUri = $this->host['base_uri'];
+
         // Update custom header keys
-        if (isset($config['headers'])) {
-            foreach ($config['headers'] as $key => $cusstomKey) {
-                if (isset($headers[$cusstomKey])) {
-                    $this->headers[$key] = $headers[$cusstomKey];
+        if (isset($this->host['headers'])) {
+            foreach ($this->host['headers'] as $key => $value) {
+                $customKey = strtolower($value);
+                if (isset($headers[$customKey])) {
+                    $this->headers[$key] = $headers[$customKey];
                 }
             }
         }
@@ -131,6 +122,6 @@ class BaseService
             'form_params' => $data
         ];
 
-        return $this->request($this->method, $this->api['destination'], $data);
+        return $this->request($this->api['method'], $this->api['destination'], $data);
     }
 }

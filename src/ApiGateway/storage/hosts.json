@@ -1,5 +1,5 @@
 {
-    "qr_benefit": {
+    "qr_benefits": {
         "base_uri": "http://nginx:1000",
         "secret": "",
         "headers": {
