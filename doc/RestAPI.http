@@ -69,8 +69,5 @@ Authorization-Service: Bearer {{service_tokenQRBenefit}}
 
 ###
 
-POST http://localhost:8000/api/qr_benefit/api/store/login
-
-{
-    "123":"123"
-}
+GET http://localhost:8000/api/qr_benefits/api/store/info
+Authorization-Service: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9uZ2lueDoxMDAwXC9hcGlcL3N0b3JlXC9sb2dpbiIsImlhdCI6MTY1NzI2MzE3MiwiZXhwIjoxNjU3NDc5MTcyLCJuYmYiOjE2NTcyNjMxNzIsImp0aSI6IkpXdFBNOGNkNzhIM2thb0UiLCJzdWIiOjUsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.8N8JIfrBwqVnhf2lgpBN1GqGBOrTLHayFIukXn7K9E8

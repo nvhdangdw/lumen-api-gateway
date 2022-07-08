@@ -17,11 +17,6 @@ class BaseService
     /**
      * @var string
      */
-    protected $host;
-
-    /**
-     * @var string
-     */
     protected $url;
 
     /**
@@ -52,7 +47,7 @@ class BaseService
     /**
      * @var array
      */
-    protected $hostConfig;
+    protected $host;
 
     /**
      * @var array
@@ -72,36 +67,33 @@ class BaseService
      *
      *
      * @param $host string
-     * @param $url string
+     * @param $path string
      * @param $method string
      * @param $headers array
      *
      * @return void
      */
-    public function updateConfig($host, $url, $method, $headers)
+    public function updateConfig($host, $path, $method, $headers)
     {
-        $hostConfig = collect($this->config['host_config'])->filter(function($value, $hostKey) use ($host) {
+        $this->host = collect($this->hostConfig)->filter(function($value, $hostKey) use ($host) {
             return $host === $hostKey;
         })->first();
 
-        $this->hostConfig = $hostConfig;
-        $this->host = $host;
-        $this->method = $method;
-        $this->url = '/' . $host . '/' . $url;
-        $self = $this;
-
-        // Get api
-        $this->api = collect($this->config['api_config'])->filter(function($item) use($self) {
+        $this->api = collect($this->apiConfig)->filter(function($item) use($host, $path, $method) {
             return
-                $self->url === $item['url'] &&
-                $self->method === $item['method'];
+                $host === $item['host'] &&
+                is_numeric(strpos($item['url'], $path)) &&
+                $method === $item['method'];
         })->first();
 
+        $this->baseUri = $this->host['base_uri'];
+
         // Update custom header keys
-        if (isset($hostConfig['headers'])) {
-            foreach ($hostConfig['headers'] as $key => $cusstomKey) {
-                if (isset($headers[$cusstomKey])) {
-                    $this->headers[$key] = $headers[$cusstomKey];
+        if (isset($this->host['headers'])) {
+            foreach ($this->host['headers'] as $key => $value) {
+                $customKey = strtolower($value);
+                if (isset($headers[$customKey])) {
+                    $this->headers[$key] = $headers[$customKey];
                 }
             }
         }
@@ -112,7 +104,7 @@ class BaseService
      */
     public function validator()
     {
-        return $this->api;
+        return $this->api && $this->host;
     }
 
     /**
@@ -124,6 +116,6 @@ class BaseService
             'form_params' => $data
         ];
 
-        return $this->request($this->method, $this->api['destination'], $data);
+        return $this->request($this->api['method'], $this->api['destination'], $data);
     }
 }

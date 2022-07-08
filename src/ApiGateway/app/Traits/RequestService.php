@@ -18,7 +18,7 @@ trait RequestService
      */
     public function request(
         $method,
-        $requestUrl,
+        $destination,
         $data =  [
             'query' => [],
             'form_params' => [],
@@ -41,7 +41,7 @@ trait RequestService
 
         $response = $client->request(
             $method,
-            $requestUrl,
+            $destination,
             array_merge($data, [
                 'headers' => $headers
             ])

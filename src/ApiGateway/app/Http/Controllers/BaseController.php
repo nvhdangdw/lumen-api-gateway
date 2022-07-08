@@ -32,9 +32,9 @@ class BaseController extends Controller
     /**
      * @return mixed
      */
-    public function request(Request $request, $host, $url)
+    public function request(Request $request, $host, $path)
     {
-        $this->service->updateConfig($host, $url, $request->getMethod(), $request->header());
+        $this->service->updateConfig($host, $path, $request->getMethod(), $request->header());
         return $this->load($request->all());
     }
 

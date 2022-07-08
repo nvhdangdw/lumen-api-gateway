@@ -184,3 +184,26 @@ Stack trace:
 2022/07/07 08:21:16 [notice] 1#1: start worker process 44
 2022/07/07 08:21:16 [notice] 1#1: start worker process 45
 2022/07/07 08:21:16 [notice] 1#1: start worker process 46
+2022/07/08 04:32:25 [notice] 1#1: using the "epoll" event method
+2022/07/08 04:32:25 [notice] 1#1: nginx/1.23.0
+2022/07/08 04:32:25 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/07/08 04:32:25 [notice] 1#1: OS: Linux 5.10.0-9-amd64
+2022/07/08 04:32:25 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/07/08 04:32:25 [notice] 1#1: start worker processes
+2022/07/08 04:32:25 [notice] 1#1: start worker process 31
+2022/07/08 06:31:33 [notice] 1#1: using the "epoll" event method
+2022/07/08 06:31:33 [notice] 1#1: nginx/1.23.0
+2022/07/08 06:31:33 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/07/08 06:31:33 [notice] 1#1: OS: Linux 5.10.0-9-amd64
+2022/07/08 06:31:33 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/07/08 06:31:33 [notice] 1#1: start worker processes
+2022/07/08 06:31:33 [notice] 1#1: start worker process 30
+2022/07/08 06:37:33 [notice] 1#1: using the "epoll" event method
+2022/07/08 06:37:33 [notice] 1#1: nginx/1.23.0
+2022/07/08 06:37:33 [notice] 1#1: built by gcc 11.2.1 20220219 (Alpine 11.2.1_git20220219) 
+2022/07/08 06:37:33 [notice] 1#1: OS: Linux 5.10.0-9-amd64
+2022/07/08 06:37:33 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/07/08 06:37:33 [notice] 1#1: start worker processes
+2022/07/08 06:37:33 [notice] 1#1: start worker process 33
+2022/07/08 06:37:33 [notice] 1#1: start worker process 34
+2022/07/08 06:37:33 [notice] 1#1: start worker process 35
