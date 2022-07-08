@@ -21,11 +21,6 @@ class BaseService
     /**
      * @var string
      */
-    protected $host;
-
-    /**
-     * @var string
-     */
     protected $url;
 
     /**
@@ -61,6 +56,11 @@ class BaseService
     /**
      * @var array
      */
+    protected $host;
+
+    /**
+     * @var array
+     */
     protected $api = [];
 
     public function __construct()
@@ -73,7 +73,7 @@ class BaseService
      *
      *
      * @param $host string
-     * @param $url string
+     * @param $path string
      * @param $method string
      * @param $headers array
      *
@@ -110,7 +110,7 @@ class BaseService
      */
     public function validator()
     {
-        return $this->api;
+        return $this->api && $this->host;
     }
 
     /**
